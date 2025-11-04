@@ -71,14 +71,11 @@
 
 
 ## Выгрузка и загрузка данных при работе с БД
-### Выгрузить данные из БД
-```
-python manage.py dumpdata MainApp --indent 4 > MainApp/fixtures/save_all.json
-```
-### Загрузить данные в БД
-```
-python manage.py loaddata MainApp/fixtures/save_all.json
-```
+# Выгрузить данные из БД
+```python manage.py dumpdata MainApp --indent 4 > MainApp/fixtures/save_all.json```
+
+# Загрузить данные в БД
+```python manage.py loaddata MainApp/fixtures/save_all.json```
 
 
 # Установка и настройка Django
