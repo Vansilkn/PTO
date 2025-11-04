@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from AuthApp import views as auth_app_views
 from MainApp import views as main_app_views
+from CounterpartyApp import views as counterparty_app_views
 
 urlpatterns = [
     #=======================================================================
@@ -42,8 +43,22 @@ urlpatterns = [
 
 
     path('', main_app_views.index_page, name="home"),
-    
 
+    path('folder', main_app_views.add_folder, name="add-folder"),
+
+
+
+    #///////////////////////////////////////////////////////////////////////
+    #=======================================================================
+    # Контрагенты - добавление, удаление, поиск
+    #=======================================================================
+    path('counterparties/add', counterparty_app_views.add_counterparty_page, name="add-counterparty"),
+    path('counterparties/list', counterparty_app_views.counterparty_page, name="counterparty-list"),
+    path('counterparties/<int:counterparty_id>/', counterparty_app_views.get_counterparty, name="counterparty-detail"),
+    path('counterparties/<int:counterparty_id>/delete', counterparty_app_views.counterparty_delete, name="counterparty-delete"),
+    path('counterparties/<int:counterparty_id>/edit', counterparty_app_views.counterparty_edit, name="counterparty-edit"),
+    #=======================================================================
+    #///////////////////////////////////////////////////////////////////////
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

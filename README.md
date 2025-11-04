@@ -94,3 +94,7 @@ python manage.py loaddata MainApp/fixtures/save_all.json
     "files.associations": {
         "*.html": "django-html"
     }
+
+# установка FTP
+```sudo apt install vsftpd```
+

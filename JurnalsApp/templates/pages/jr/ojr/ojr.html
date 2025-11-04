@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Begin page content -->
+ <div class="container ojr_container">
+    <div class="row">
+        <div class="col text-center">
+            <h1>{{ pagename }}</h1>
+            <hr>
+        </div>
+    </div>
+
+    <!-- <nav>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url "ojr_title" %}">Титул</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url "ojr_section_1" %}">Раздел 1</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url "ojr_section_2" %}">Раздел 2</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url "ojr_section_3" %}">Раздел 3</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url "ojr_section_4" %}">Раздел 4</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url "ojr_section_5" %}">Раздел 5</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url "ojr_section_6" %}">Раздел 6</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url "ojr_reference" %}">Справка</a>
+            </li>
+        </ul>
+    </nav> -->
+
+
+    <!--Навигация по журналу-->
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Титул</button>
+            <button class="nav-link" id="nav-section1-tab" data-bs-toggle="tab" data-bs-target="#nav-section1" type="button" role="tab" aria-controls="nav-section1" aria-selected="false">Раздел 1</button>
+            <button class="nav-link" id="nav-section2-tab" data-bs-toggle="tab" data-bs-target="#nav-section2" type="button" role="tab" aria-controls="nav-section2" aria-selected="false">Раздел 2</button>
+            <button class="nav-link" id="nav-section3-tab" data-bs-toggle="tab" data-bs-target="#nav-section3" type="button" role="tab" aria-controls="nav-section3" aria-selected="false">Раздел 3</button>
+            <button class="nav-link" id="nav-section4-tab" data-bs-toggle="tab" data-bs-target="#nav-section4" type="button" role="tab" aria-controls="nav-section4" aria-selected="false">Раздел 4</button>
+            <button class="nav-link" id="nav-section5-tab" data-bs-toggle="tab" data-bs-target="#nav-section5" type="button" role="tab" aria-controls="nav-section5" aria-selected="false">Раздел 5</button>
+            <button class="nav-link" id="nav-section6-tab" data-bs-toggle="tab" data-bs-target="#nav-section6" type="button" role="tab" aria-controls="nav-section6" aria-selected="false">Раздел 6</button>
+            <button class="nav-link" id="nav-reference-tab" data-bs-toggle="tab" data-bs-target="#nav-reference" type="button" role="tab" aria-controls="nav-reference" aria-selected="false">Справка</button>
+
+            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
+            <button class="nav-link" id="nav-disabled-tab" data-bs-toggle="tab" data-bs-target="#nav-disabled" type="button" role="tab" aria-controls="nav-disabled" aria-selected="false" disabled>Disabled</button>
+        </div>
+    </nav>
+
+
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+            {% include 'pages/jr/ojr/ojr_title.html' %}
+        </div>
+        <div class="tab-pane fade" id="nav-section1" role="tabpanel" aria-labelledby="nav-section1-tab" tabindex="0">
+            {% include 'pages/jr/ojr/ojr_section_1.html' %}
+        </div>
+        <div class="tab-pane fade" id="nav-section2" role="tabpanel" aria-labelledby="nav-section2-tab" tabindex="1">
+            {% include 'pages/jr/ojr/ojr_section_2.html' %}
+        </div>
+        <div class="tab-pane fade" id="nav-section3" role="tabpanel" aria-labelledby="nav-section3-tab" tabindex="2">
+            {% include 'pages/jr/ojr/ojr_section_3.html' %}
+        </div>
+        <div class="tab-pane fade" id="nav-section4" role="tabpanel" aria-labelledby="nav-section4-tab" tabindex="4">
+            {% include 'pages/jr/ojr/ojr_section_4.html' %}
+        </div>
+        <div class="tab-pane fade" id="nav-section5" role="tabpanel" aria-labelledby="nav-section5-tab" tabindex="5">
+            {% include 'pages/jr/ojr/ojr_section_5.html' %}
+        </div>
+        <div class="tab-pane fade" id="nav-section6" role="tabpanel" aria-labelledby="nav-section6-tab" tabindex="6">
+            {% include 'pages/jr/ojr/ojr_section_6.html' %}
+        </div>
+        <div class="tab-pane fade" id="nav-reference" role="tabpanel" aria-labelledby="nav-reference-tab" tabindex="7">
+            {% include 'pages/jr/ojr/ojr_reference.html' %}
+        </div>
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+            33
+        </div>
+        <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab" tabindex="0">
+            44
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

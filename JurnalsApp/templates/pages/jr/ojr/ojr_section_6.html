@@ -1,0 +1,90 @@
+<div class="ojr_section">
+    <h4>
+        Раздел 6
+    </h4>
+    <p> 
+        Сведения о государственном строительном надзоре при строительстве, реконструкции <br>
+        объекта капитального строительства
+    </p>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">№ п/п</th>
+                <th scope="col">
+                    Дата контрольного (надзорного) мероприятия
+                </th>
+                <th scope="col">
+                    Данные о проведенных органом государственного строительного надзора 
+                    контрольных (надзорных) мероприятиях
+                </th>
+                <th scope="col">
+                    Срок устранения выявленных нарушений
+                </th>
+                <th scope="col">
+                    Должность, фамилия, инициалы, подпись должностного лица
+                </th>
+                <th scope="col">
+                    Фактическая дата устранения выявленных нарушений
+                </th>
+                <th scope="col">
+                    Должность, фамилия, инициалы, подпись должностного лица
+                </th>
+            </tr>
+            <tr>
+                <th scope="col">1</th>
+                <th scope="col">2</th>
+                <th scope="col">3</th>
+                <th scope="col">4</th>
+                <th scope="col">5</th>
+                <th scope="col">6</th>
+                <th scope="col">7</th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+            {% comment %} {% for snippet in snippets %}
+                <tr>
+                    <td scope="row">{{ snippet.id }} </td>
+                    <td>
+                        <a href="{% url "snippet_detail" snippet.id %}">{{snippet.name}}</a>
+                        {% if snippet.user == request.user %}
+                            <a href="{% url "snippet-edit" snippet.id %}">
+                                <i style="color: blue;" class="bi bi-pencil-square"></i>
+                            </a>
+                            <a href="{% url "snippet-delete" snippet.id %}">
+                                <i style="color: red;" class="bi bi-trash"></i>
+                            </a>
+                        {% endif %}
+                    </td>
+                    <td>{{snippet.lang}}</td>
+                    <td>{{snippet.creation_date | date:"d F Y H:i:s"}}</td>
+                    <td>
+                        {% if snippet.user == request.user %}
+                            <div style="display: flex; flex-direction: row;"> 
+                                <a href="{%  url "snippet-edit" snippet.id %}" class="btn btn-primary">Редактировать</a>
+                                &nbsp;&nbsp;
+                                <form action="{%  url "snippet-delete" snippet.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Удалить</button>
+                                </form>
+                            </div>
+                        {% endif %}
+                    </td>
+                    <td>{{ snippet.user.username }}</td>
+                    <td>
+                        {% if snippet.public %}
+                            Публичный
+                        {% else %} 
+                            Приватный
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4"> Нет доступных сниппетов! </td>
+                </tr>
+            {% endfor %} {% endcomment %}
+        </tbody>
+    </table>
+</div>

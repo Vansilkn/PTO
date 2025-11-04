@@ -43,6 +43,10 @@ INSTALLED_APPS = [
 
     'MainApp',
     'AuthApp',
+    'CounterpartyApp',
+    'JurnalsApp',
+    'ProjectsApp',
+
     'django_extensions',
 ]
 
