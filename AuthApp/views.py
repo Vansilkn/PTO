@@ -4,9 +4,7 @@ from django.shortcuts import redirect
 from AuthApp.forms_auth import UserRegistrationForm
 
 
-
 # Create your views here.
-
 def login(request):
     if request.method == 'POST':
         username = request.POST.get("username")

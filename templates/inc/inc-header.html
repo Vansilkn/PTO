@@ -41,7 +41,7 @@
                 </ul>
             </div>
             {% if request.user.is_authenticated %}
-                <span style="color: white;">Пользователь: &nbsp;&nbsp;{{request.user.username }} </span> &nbsp;&nbsp;
+                <span style="color: white;">Пользователь: &nbsp;&nbsp; {{request.user.username }} </span> &nbsp;&nbsp;
                 <a href="{% url "logout" %}">Выйти</a>
             {% else %}
                 <div class="navbar-nav mr-right nav-item dropdown dropdown-menu-right">

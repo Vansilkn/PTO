@@ -42,6 +42,7 @@ urlpatterns = [
 
 
     path('', main_app_views.index_page, name="home"),
+    
 
 
 
