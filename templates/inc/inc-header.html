@@ -1,0 +1,75 @@
+{% load static %}
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" >
+        <div class="container">
+            <a class="navbar-brand" href="{% url "home" %}">
+                <img src="{% static 'images/logo.jpg' %}" width="32" height="32" alt="">
+                PTO
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    {% if request.user.is_authenticated %}
+                        <li class="form-inline">
+                            {% comment %} <a class="btn btn-outline-secondary" href="{% url "projects-list" %}"> {% endcomment %}
+                            <a class="btn btn-outline-secondary" href="">
+                                Проекты
+                            </a>
+                        </li>
+                        <li class="form-inline">
+                            {% comment %} <a class="btn btn-outline-secondary" href="{% url "my-projects" %}"> {% endcomment %}
+                            <a class="btn btn-outline-secondary" href="">
+                                Мои проекты
+                            </a>
+                        </li>
+                        <li class="form-inline">
+                            {% comment %} <a class="btn btn-outline-secondary" href="{% url "counterparty-list" %}"> {% endcomment %}
+                            <a class="btn btn-outline-secondary" href="">
+                                Контрагенты
+                            </a>
+                        </li>
+                    {% endif %} 
+                    <li class="form-inline">
+                        <a class="btn btn-outline-info" href="">
+                            О программе
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            {% if request.user.is_authenticated %}
+                <span style="color: white;">Пользователь: &nbsp;&nbsp;{{request.user.username }} </span> &nbsp;&nbsp;
+                <a href="{% url "logout" %}">Выйти</a>
+            {% else %}
+                <div class="navbar-nav mr-right nav-item dropdown dropdown-menu-right">
+                    <a class="btn btn-outline-primary my-2 my-sm-0 dropdown-toggle" href="#" id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Авторизация</a> &nbsp;&nbsp; 
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <form class="w-100 px-4 py-3" action="{% url "login" %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group form-inline">
+                                <input type="text" name="username" class="form-control" placeholder="Username" required>
+                            </div>
+                            <div class="form-group form-inline">
+                                <input type="password" name="password" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Войти</button>
+                        </form>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                </div> 
+                {% if errors %}
+                    <ul>
+                        {% for error in errors %}
+                            <li style="color: red;">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <a style="padding-left: 10px;" href="{% url "register" %}" class="btn btn-info">Регистрация</a>
+            {% endif %}
+        </div>
+    </nav>
+</header>

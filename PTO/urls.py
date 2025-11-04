@@ -16,7 +16,35 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
+from AuthApp import views as auth_app_views
+from MainApp import views as main_app_views
 
 urlpatterns = [
+    #=======================================================================
+    # **********  Админ ****************************************************
+    #=======================================================================
     path('admin/', admin.site.urls),
-]
+    #=======================================================================
+    #///////////////////////////////////////////////////////////////////////
+
+
+    #///////////////////////////////////////////////////////////////////////
+    #=======================================================================
+    # **********  Аутентификация и авторизация  ****************************
+    #=======================================================================
+    path('login', auth_app_views.login, name='login'),
+    path('logout', auth_app_views.logout, name='logout'),
+    path('register', auth_app_views.create_user, name='register'),
+    #=======================================================================
+    #///////////////////////////////////////////////////////////////////////
+
+
+    path('', main_app_views.index_page, name="home"),
+
+
+
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
