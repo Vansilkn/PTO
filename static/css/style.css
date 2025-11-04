@@ -1,0 +1,159 @@
+body {
+    /* background-image: url('/static/images/fon1.jpg'); */
+    background-image: url('/static/images/font1.jpg');
+    /* background-repeat: space; */
+    background-size: 100% 100%;
+    
+}
+
+
+
+
+
+
+
+.ojr_container {
+    margin-top: 48px; /*43px*/
+    border:1px solid #ced4da; 
+    border-radius:5px;
+    background-color:ghostwhite;
+}
+
+
+
+
+.ojr_section {
+    margin: 50px 100px;
+
+}
+.ojr_section table{
+    border-color:black;
+}
+.ojr_section h3 {
+    text-align: center;
+    text-transform: uppercase;
+}
+.ojr_section h4 {
+    text-align: center;
+    text-transform: uppercase;
+}
+.ojr_section p {
+    text-align: center;
+}
+.ojr_section thead {
+    text-align: center;
+
+}
+
+
+.col {
+  flex: 1 0 0;
+}
+
+
+
+
+
+
+.ojr_reference {
+    margin: 50px 100px;
+}
+
+.ojr_reference h4 {
+    margin: 50px 0px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.ojr_reference p {
+    margin: 15px 0px;
+    /* text-shadow: -5px -4px 3px #999; */
+    text-align:justify;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+.item{
+
+    width:150pt;
+    height: 100%;
+    margin: 10px;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding-top:10px;
+    background: rgba(223, 241, 244, 0.625);
+}   
+
+.item:hover {
+    background: rgb(207, 232, 237);
+    box-shadow: 4px 8px 16px rgba(71, 215, 240);
+}
+
+.item p{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.item_name{
+    font-size: 1.5em;
+    text-align:center;
+ }
+
+ .item a{
+    text-decoration: none;
+    color: black;
+    text-align: justify;
+
+ }
+.items {
+    width: 100%;
+    display: grid;
+    /* Автоматически заполняем на всю ширину grid-контейнера */
+    /*
+    grid-template-columns: repeat(auto-fill, 200px);
+    max-width: 1200px; /* Ширина grid-контейнера */
+    /*
+    justify-content: center;
+    justify-items: center; /* Размещаем карточку по центру */
+    /*
+    column-gap: 30px; /* Отступ между колонками */
+    /*
+    row-gap: 40px; /* Отступ между рядами */
+    /*
+    margin: 0 auto;
+  } 
+  */
+
+
+/* main > .container {
+    padding: 60px 15px 0;
+}
+
+.footer {
+    background-color: #f5f5f5;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+} */
+
+/* @media (max-width: 768px) {
+    .backgd {
+        background-image: url('images/hero.jpg');
+    }
+        }*/
+
