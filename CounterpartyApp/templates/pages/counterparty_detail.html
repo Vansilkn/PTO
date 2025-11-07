@@ -2,7 +2,7 @@
 
 {% block content %}
     <!-- Begin page content -->
-    <div class="container">
+    <div class="container bg-white">
         <div class="row">
             <div class="col text-center">
                 <h1>{{ pagename }}</h1>
@@ -13,23 +13,70 @@
         <div class="row">
             <div class="col">
                 <fieldset disabled>
-                <div class="row disabled">
-                    <div class="col col-8">
-                        Сокращенное наименование организации: <input type="text" value="{{counterparty.name_sokr}}" class="form-control">
-                        Полное наименование организации: <input type="text" value="{{counterparty.name_poln}}" class="form-control">
-                        Юридический адрес: <input type="text" value="{{counterparty.ur_adres}}" class="form-control">
-                        Почтовый адрес: <input type="text" value="{{counterparty.pocht_adres}}" class="form-control">
-                        ИНН: <input type="text" value="{{counterparty.inn}}" class="form-control">
-                        КПП: <input type="text" value="{{counterparty.kpp}}" class="form-control">
-                        ОГРН: <input type="text" value="{{counterparty.ogrn}}" class="form-control">
-                        Наименование банка: <input type="text" value="{{counterparty.name_bank}}" class="form-control">
-                        р/с: <input type="text" value="{{counterparty.rs}}" class="form-control">
-                        к/с: <input type="text" value="{{counterparty.ks}}" class="form-control">
-                        БИК: <input type="text" value="{{counterparty.bik}}" class="form-control">
-                        Номер телефона: <input type="text" value="{{counterparty.phone}}" class="form-control">
-                        E-mail: <input type="text" value="{{counterparty.email}}" class="form-control">
+                    <div class="row disabled">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Сокращенное наименование организации:</label>
+                            <input type="text" value="{{counterparty.name_sokr}}" class="form-control" id="exampleFormControlInput1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Полное наименование организации:</label>
+                            <input type="text" value="{{counterparty.name_poln}}" class="form-control" id="exampleFormControlInput1">
+                        </div>
                     </div>
-                </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Юридический адрес:</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{counterparty.ur_adres}}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea2" class="form-label">Почтовый адрес:</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea2" rows="3">{{counterparty.pocht_adres}}</textarea>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-8">
+                            Юридический адрес: <input type="text" value="{{counterparty.ur_adres}}" class="form-label">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-4">
+                            Почтовый адрес: <input type="text" value="{{counterparty.pocht_adres}}" class="form-label">
+                        </div>
+                    </div>
+
+                    <div class="row disabled">
+                        <div class="col-4">
+                            ИНН: <input type="text" value="{{counterparty.inn}}" class="form-control">
+                            КПП: <input type="text" value="{{counterparty.kpp}}" class="form-control">
+                            ОГРН: <input type="text" value="{{counterparty.ogrn}}" class="form-control">
+                            Наименование банка: <input type="text" value="{{counterparty.name_bank}}" class="form-control">
+                            р/с: <input type="text" value="{{counterparty.rs}}" class="form-control">
+                            к/с: <input type="text" value="{{counterparty.ks}}" class="form-control">
+                            БИК: <input type="text" value="{{counterparty.bik}}" class="form-control">
+                            Номер телефона: <input type="text" value="{{counterparty.phone}}" class="form-control">
+                            E-mail: <input type="text" value="{{counterparty.email}}" class="form-control">
+                        </div>
+                    </div>
+
+
+{% comment %} 
+                        <div class="col col-8">
+                            Сокращенное наименование организации: <input type="text" value="{{counterparty.name_sokr}}" class="form-control">
+                            Полное наименование организации: <input type="text" value="{{counterparty.name_poln}}" class="form-control">
+                            Юридический адрес: <input type="text" value="{{counterparty.ur_adres}}" class="form-control">
+                            Почтовый адрес: <input type="text" value="{{counterparty.pocht_adres}}" class="form-control">
+                            ИНН: <input type="text" value="{{counterparty.inn}}" class="form-control">
+                            КПП: <input type="text" value="{{counterparty.kpp}}" class="form-control">
+                            ОГРН: <input type="text" value="{{counterparty.ogrn}}" class="form-control">
+                            Наименование банка: <input type="text" value="{{counterparty.name_bank}}" class="form-control">
+                            р/с: <input type="text" value="{{counterparty.rs}}" class="form-control">
+                            к/с: <input type="text" value="{{counterparty.ks}}" class="form-control">
+                            БИК: <input type="text" value="{{counterparty.bik}}" class="form-control">
+                            Номер телефона: <input type="text" value="{{counterparty.phone}}" class="form-control">
+                            E-mail: <input type="text" value="{{counterparty.email}}" class="form-control">
+                        </div> {% endcomment %}
+                </fieldset>
                 <hr>
             </div>
         </div>

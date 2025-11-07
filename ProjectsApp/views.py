@@ -1,6 +1,112 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import auth
+from ProjectsApp.forms_projects import ProjectForm
+from django.http import HttpResponseNotAllowed
+from ProjectsApp.models import ProjectModel
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 
+@login_required
+def add_project_page (request):
+    """ Добавляем новую карточку контрагента """
+    # Создаем пустую форму при запросе GET
+    if request.method == "GET":
+        form = ProjectForm()
 
+        context = {
+            'pagename': 'Добавление нового контрагента',
+            'form': form
+        }
+        return render(request, 'pages/add_counterparty.html', context)
+    
+    # Получае данные из формы и на их основе создаем новую карточку контрагента, сохраняя его в БД
+    if request.method == "POST":
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+
+            counterparty = form.save(commit=False) # Получаем экземпляр класса ContragentModel
+            if request.user.is_authenticated:
+                counterparty.user = request.user
+                counterparty.save()
+            return redirect("counterparty-list") # URL для списка карточек контрагентов
+        return render(request, "pages/add_counterparty.html", context={"form": form})
+    return HttpResponseNotAllowed(["POST"], "You must make POST request to add snippet.")
+
+
+@login_required
+def projects_page (request):
+    """ Получаем все элементы из базы данных. """
+    counterparties = ProjectModel.objects.filter(public=True) 
+    context = {
+        'pagename':'Просмотр списка контрагентов',
+        'counterparties': counterparties
+    }
+    return render(request, 'pages/view_counterparties.html', context)
+
+
+
+@login_required
+def get_project (request, counterparty_id: int):
+    """ Получаем элемент по идентификатору из базы данных. """
+    context = {'pagename': 'Просмотр карточки контрагента'}
+    try:
+        counterparty = ProjectModel.objects.get(id=counterparty_id)
+    except ObjectDoesNotExist:
+        return render(request, 'page/errors.html', 
+                      context | {"error": f"Counterparty с id={counterparty_id} не найден."})
+    else:
+        context['counterparty'] = counterparty
+        return render(request, 'pages/counterparty_detail.html', context)
+
+
+
+# Удаление данных из таблицы
+@login_required
+def cproject_delete(request, counterparty_id:int):
+    """ Удаляем элемент по идентификатору из базы данных. 
+    Найти counterparty по counterparty_id или вернуть ошибку 404 """
+    if request.method == "GET" or request.method == "POST":
+        counterparty = get_object_or_404(ProjectModel.objects.filter(user=request.user), id=counterparty_id)
+        counterparty.delete() # Удаляем данные из базы
+    return redirect('counterparty-list')
+
+
+
+# Обновление данных в таблице
+@login_required
+def cproject_edit(request, counterparty_id:int):
+    """ Обновление данных контрагента """
+    сontext = {
+        'pagename': 'Обновление данных контрагента',
+        }
+
+    counterparty = get_object_or_404(ProjectModel.objects.filter(user=request.user), id=counterparty_id)
+
+    # Создаем форму на основе данных контрагента при запросе GET
+    if request.method == "GET":
+        form = ProjectForm(instance=counterparty)
+        return render(request, 'pages/add_counterparty.html', сontext | {"form": form})
+    
+    # Получае данные из формы и на их основе обновляем данные контрагента, сохраняя их в БД
+    if request.method == "POST":
+        data_form = request.POST
+        counterparty.name_sokr = data_form["name_sokr"]
+        counterparty.name_poln = data_form["name_poln"]
+        counterparty.ur_adres = data_form["ur_adres"]
+        counterparty.pocht_adres = data_form["pocht_adres"]
+        counterparty.inn = data_form["inn"]
+        counterparty.kpp = data_form["kpp"]
+        counterparty.ogrn = data_form["ogrn"]
+        counterparty.name_bank = data_form["name_bank"]
+        counterparty.rs = data_form["rs"]
+        counterparty.ks = data_form["ks"]
+        counterparty.bik = data_form["bik"]
+        counterparty.phone = data_form["phone"]
+        counterparty.email = data_form["email"]
+        counterparty.public = data_form.get("public", False)
+        counterparty.save()
+        return redirect("counterparty-list") # URL для списка контрагентов 
+    

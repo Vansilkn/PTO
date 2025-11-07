@@ -16,7 +16,7 @@
                     {% if request.user.is_authenticated %}
                         <li class="form-inline">
                             {% comment %} <a class="btn btn-outline-secondary" href="{% url "projects-list" %}"> {% endcomment %}
-                            <a class="btn btn-outline-secondary" href="">
+                            <a class="btn btn-outline-secondary" href="{% url "projects-list" %}">
                                 Проекты
                             </a>
                         </li>
