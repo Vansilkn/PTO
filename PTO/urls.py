@@ -50,8 +50,8 @@ urlpatterns = [
     path('projects/add', projects_app_views.add_project_page, name="add-project"),
     path('projects/list', projects_app_views.projects_page, name="projects-list"),
     path('projects/<int:project_id>/', projects_app_views.get_project, name="project-detail"),
-    path('projects/<int:project_id>/delete', projects_app_views.cproject_delete, name="project-delete"),
-    path('projects/<int:project_id>/edit', projects_app_views.cproject_edit, name="project-edit"),
+    path('projects/<int:project_id>/delete', projects_app_views.project_delete, name="project-delete"),
+    path('projects/<int:project_id>/edit', projects_app_views.project_edit, name="project-edit"),
     #=======================================================================
     #///////////////////////////////////////////////////////////////////////
 

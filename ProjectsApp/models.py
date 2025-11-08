@@ -5,19 +5,27 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class ProjectModel(models.Model):
-    """ Добавление модели контрагента """
+    """ Добавление модели проекта """
     class Meta:
-        ordering = ['name_sokr', 'name_poln']
+        ordering = ['name_project', 'projects_adres']
 
-    name_sokr = models.CharField(max_length=100)
-    name_poln = models.CharField(max_length=100)
-    ur_adres = models.TextField(max_length=300)
+    name_project = models.CharField(max_length=100)
+    projects_adres = models.TextField(max_length=300)
+    zakazchik_name = models.CharField(max_length=100)
+    zastroschik_name = models.CharField(max_length=100)
+    genpodryadchyk_name = models.CharField(max_length=100)
     creation_date = models.DateTimeField(auto_now=True, verbose_name="Дата создания")
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, blank=True, null=True)
     public = models.BooleanField(default=True) # True = public, False = private
 
     def __repr__(self):
-        return f'Контрагент {self.name_sokr}, {self.name_poln}'
+        return f'Проект {self.name_project}, {self.projects_adres}'
 
     def __str__(self):
-        return f'{self.name_sokr}'
+        return f'{self.name_project}'
+
+
+class ContractModel(models.Model):
+    """" Добавление модели контрака """
+    pass
+ 

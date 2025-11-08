@@ -1,24 +1,47 @@
-# PTO
+### PTO
 
 ## Инструкция по развертыванию проекта
-
 # 1. Создайте новое окружение:
 ```python3 -m venv django_venv```
 
 # 2. Активируем виртуальное окружение:
 ```source django_venv/bin/activate```
 
-# 3. 
+# 3. Установка модулей виртуальное окружение:
 ``` pip install -r requirements.txt ```
 
+# 4. Загрузка списка модулей в requirements.txt
 ``` python -m pip freeze > requirements.txt ```
 
-
-# 4. Применить миграции
+# 5. Применить миграции
 ``` python manage.py migrate ```
 
-# 5. Запуск сервера
+# 6. Запуск сервера
 ``` python manage.py runserver ```
+
+
+## Выгрузка и загрузка данных при работе с БД
+# Выгрузить данные из БД
+```python manage.py dumpdata MainApp --indent 4 > MainApp/fixtures/save_all.json```
+```python manage.py dumpdata AuthApp --indent 4 > AuthApp/fixtures/save_all.json```
+```python manage.py dumpdata CounterpartyApp --indent 4 > CounterpartyApp/fixtures/save_all.json```
+```python manage.py dumpdata JurnalsApp --indent 4 > JurnalsApp/fixtures/save_all.json```
+```python manage.py dumpdata ProjectsApp --indent 4 > ProjectsApp/fixtures/save_all.json```
+
+# Загрузить данные в БД
+```python manage.py loaddata MainApp/fixtures/save_all.json```
+```python manage.py loaddata AuthApp/fixtures/save_all.json```
+```python manage.py loaddata CounterpartyApp/fixtures/save_all.json```
+```python manage.py loaddata JurnalsApp/fixtures/save_all.json```
+```python manage.py loaddata ProjectsApp/fixtures/save_all.json```
+
+## ****************************************************************************************
+
+# Для создания нового приложения в текущем проекте:
+``` python manage.py startapp <Наименование проекта> ```
+
+
+## ****************************************************************************************
 
 
 ## Запуск `ipython` в контексте `django` приложений
@@ -65,22 +88,14 @@
 
 
 
+## ****************************************************************************************
 
 
+## Установка и настройка Django
+# 1. Установить Django.
+``` pip install django ```
 
-
-
-## Выгрузка и загрузка данных при работе с БД
-# Выгрузить данные из БД
-```python manage.py dumpdata MainApp --indent 4 > MainApp/fixtures/save_all.json```
-
-# Загрузить данные в БД
-```python manage.py loaddata MainApp/fixtures/save_all.json```
-
-
-# Установка и настройка Django
-1. Установить Django.
-2. Настройка VsCode
+# 2. Настройка VsCode
 Нажать "Ctrl" + "," попадаем в кладку настройки, в правом верхнем углу нажимаем на иконку файла "Setting.json"
 Добавляем строки:
     "files.autoSave": "afterDelay",

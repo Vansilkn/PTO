@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 <!-- Begin page content -->
     <div class="container ">
         <div class="row">
@@ -11,10 +10,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col" style="padding: 0px 20px 10px 0px;">
+            <div class="col">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     {% if request.user.is_authenticated %}
-                        <a class="btn btn-primary btn-sm" href="{% url "add-counterparty" %}">Добавить кнтрагента </a>
+                        <a class="btn btn-primary btn-sm" href="{% url "add-project" %}">Добавить проекта</a>
                     {% endif %}
                 </div>
             </div>
@@ -25,69 +24,42 @@
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Сокращенное наименование организации</th>
-                            {% comment %} <th scope="col">Полное наименование организации</th>
-                            <th scope="col">Юридический адрес</th>
-                            <th scope="col">Почтовый адрес</th> {% endcomment %}
-                            <th scope="col">ИНН</th>
-                            <th scope="col">КПП</th>
-                            <th scope="col">ОГРН</th>
-                            {% comment %} <th scope="col">Наименование банка</th>
-                            <th scope="col">Расчетный счет</th>
-                            <th scope="col">Кор. счет</th>
-                            <th scope="col">БИК</th> {% endcomment %}
-                            <th scope="col">Номер телефона</th>
-                            <th scope="col">e-mail</th>
+                            <th scope="col">Наименование проекта</th>
+                            <th scope="col">Адрес объекта</th>
+                            <th scope="col">Заказчик</th>
+                            <th scope="col">Застройщик</th>
+                            <th scope="col">Генподрядчик</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for counterparty in counterparties %}
+                        {% for project in projects %}
                             <tr>
-                                <td scope="row">{{ counterparty.id }} </td>
+                                <td scope="row">{{ project.id }} </td>
                                 <td>
-                                    <a href="{% url "counterparty-detail" counterparty.id %}">{{counterparty.name_sokr}}</a>
-                                    {% if counterparty.user == request.user %}
-
-                                        <a href="{% url "counterparty-edit" counterparty.id %}">
+                                    <a href="{% url "project-detail" project.id %}">{{project.name_project}}</a>
+                                    {% if project.user == request.user %}
+                                        <a href="{% url "project-edit" project.id %}">
                                             <i style="color: blue;" class="bi bi-pencil-square"></i>
                                         </a>
-
-                                        <a href="{% url "counterparty-delete" counterparty.id %}">
+                                        <a href="{% url "project-delete" project.id %}">
                                             <i style="color: red;" class="bi bi-trash"></i>
                                         </a>
-                                        
                                     {% endif %}
                                 </td>
-                                {% comment %} <td>{{counterparty.name_poln}}</td> {% endcomment %}
-                                {% comment %} <td>{{counterparty.ur_adres}}</td> {% endcomment %}
-                                {% comment %} <td>{{counterparty.pocht_adres}}</td> {% endcomment %}
-                                <td>{{counterparty.inn}}</td>
-                                <td>{{counterparty.kpp}}</td>
-                                <td>{{counterparty.ogrn}}</td>
-                                {% comment %} <td>{{counterparty.name_bank}}</td> {% endcomment %}
-                                {% comment %} <td>{{counterparty.rs}}</td> {% endcomment %}
-                                {% comment %} <td>{{counterparty.ks}}</td> {% endcomment %}
-                                {% comment %} <td>{{counterparty.bik}}</td> {% endcomment %}
-                                <td>{{counterparty.phone}}</td>
-                                <td>{{counterparty.email}}</td>
-                                {% comment %} <td>{{ snippet.user.username }}</td> {% endcomment %}
-                                {% comment %} <td>
-                                    {% if counterparty.public %}
-                                        Публичный
-                                    {% else %} 
-                                        Приватный
-                                    {% endif %}
-                                </td>  {% endcomment %}
+                                <td>{{project.projects_adres}}</td>
+                                <td>{{project.zakazchik_name}}</td>
+                                <td>{{project.zastroschik_name}}</td>
+                                <td>{{project.genpodryadchyk_name}}</td>
                             </tr>
                         {% empty %}
                             <tr>
-                                <td colspan="4"> Нет доступных контрагентов! </td>
+                                <td colspan="4"> Нет доступных проектов! </td>
                             </tr>
                         {% endfor %}
                     </tbody> 
                 </table> 
                 <div align = "right">
-                    <i style="color: gray;">Всего контрагентов: {{ counterparties.count }} </i>
+                    <i style="color: gray;">Всего проектов: {{ counterparties.count }} </i>
                 </div>
             </div>
         </div>
