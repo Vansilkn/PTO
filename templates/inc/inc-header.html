@@ -5,7 +5,7 @@
         <div class="container">
             <a class="navbar-brand" href="{% url "home" %}">
                 <img src="{% static 'images/logo.jpg' %}" width="32" height="32" alt="">
-                PTO
+                ПТО Мастер
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,9 @@
             </div>
             {% if request.user.is_authenticated %}
                 <span style="color: white;">Пользователь: &nbsp;&nbsp; {{request.user.username }} </span> &nbsp;&nbsp;
-                <a href="{% url "logout" %}">Выйти</a>
+                <a class="navbar-brand" href="{% url "logout" %}">
+                    <img src="{% static 'images/exit_3.png' %}" width="32" height="32" alt="">
+                </a>
             {% else %}
                 <div class="navbar-nav mr-right nav-item dropdown dropdown-menu-right">
                     <a class="btn btn-outline-primary my-2 my-sm-0 dropdown-toggle" href="#" id="navbarDropdown"

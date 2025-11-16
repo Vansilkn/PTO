@@ -1,11 +1,20 @@
 from django.shortcuts import render
 from pathlib import Path
 import os
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
+def auth_page(request):
+    """  """
+    context = {'pagename': 'ПТО мастер'}
+    return render(request, 'base_auth.html', context)
+
+
+@login_required
 def index_page(request):
     """  """
-    context = {'pagename': 'ПТО'}
+    context = {'pagename': 'ПТО мастер'}
     return render(request, 'pages/index.html', context)
 
 
@@ -28,4 +37,14 @@ def add_folder():
     subfolder_abs_path = os.path.join(ROOT_FOLDER, 'subfolder')
     print(subfolder_abs_path)
 
-    
+
+
+
+def test(request):
+    context = {'pagename': 'Тестовая страница'}
+    return render(request, 'pages/test.html', context)
+
+
+def test_2(request):
+    context = {'pagename': 'Тестовая страница 2'}
+    return render(request, 'pages/test_2.html', context)

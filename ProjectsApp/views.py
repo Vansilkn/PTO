@@ -29,8 +29,8 @@ def add_project_page (request):
             if request.user.is_authenticated:
                 project.user = request.user
                 project.save()
-            return redirect("project-list") # URL для списка проектов
-        return render(request, "pages/add_project.html", context={"form": form})
+            return redirect("projects-list") # URL для списка проектов
+        return render(request, "pages/add_projects.html", context={"form": form})
     return HttpResponseNotAllowed(["POST"], "Вы должны сделать POST-запрос на добавление проекта.")
 
 
@@ -40,7 +40,7 @@ def projects_page (request):
     projects = ProjectModel.objects.filter(public=True) 
     context = {
         'pagename':'Просмотр списка проектов',
-        'counterparties': projects
+        'projects': projects
     }
     return render(request, 'pages/view_projects.html', context)
 
@@ -56,7 +56,7 @@ def get_project (request, project_id: int):
                       context | {"error": f"Проект {project_id} не найден."})
     else:
         context['project'] = project
-        return render(request, 'pages/project_detail.html', context)
+        return render(request, 'pages/projects_detail.html', context)
 
 
 # Удаление данных из таблицы
@@ -82,7 +82,7 @@ def project_edit(request, project_id:int):
     # Создаем форму на основе данных проекта при запросе GET
     if request.method == "GET":
         form = ProjectForm(instance=project)
-        return render(request, 'pages/add_project.html', сontext | {"form": form})
+        return render(request, 'pages/add_projects.html', сontext | {"form": form})
     
     # Получае данные из формы и на их основе обновляем данные проекта, сохраняя их в БД
     if request.method == "POST":
@@ -92,7 +92,7 @@ def project_edit(request, project_id:int):
         project.zakazchik_name = data_form["zakazchik_name"]
         project.zastroschik_name = data_form["zastroschik_name"]
         project.genpodryadchyk_name = data_form["genpodryadchyk_name"]
-        project.creation_date = data_form["creation_date"]
-        project.public = data_form.get("public", False)
+        # # project.creation_date = data_form["creation_date"]
+        # project.public = data_form.get("public", False)
         project.save()
-        return redirect("project-list") # URL для списка проектов 
+        return redirect("projects-list") # URL для списка проектов 

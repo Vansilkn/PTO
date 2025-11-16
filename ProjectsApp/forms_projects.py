@@ -53,7 +53,7 @@ class ProjectForm(ModelForm):
     # на пустое поле и количество символов)
     def clean_name_project(self):
         """ Метод для проверки длины поля """
-        name_project = self.cleaned_data.get("name_sokr")
-        if name_project is not None and len(name_project) > 1:
+        name_project = self.cleaned_data.get("name_project")
+        if name_project is not None and len(name_project) > 3:
             return name_project
         raise ValidationError("Имя слишком короткое.")

@@ -1,0 +1,50 @@
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .x-container-b4TopBar .x-tab .x-tab-center {
+        width: 150px !important;
+        display: inline-block;
+    }
+
+    .x-container-b4TopBar .x-tab .x-tab-inner {
+        color: #4490e2;
+        font-size: 16px;
+        line-height: 1.1;
+        white-space: normal;
+        vertical-align: middle;
+        padding-bottom: 5px;
+    }
+
+    *, .x-form-item {
+        font-family: 'Segoe UI', Tahoma, Arial, Verdana, sans-serif !important
+    }
+
+    .x-panel-b4desktop {
+        font-family: 'Segoe UI', Tahoma, Arial, Verdana, sans-serif !important
+    }
+
+    .x-body {
+        font-family: 'Segoe UI', Tahoma, Arial, Verdana, sans-serif !important
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Arial, Verdana, sans-serif !important
+    }
+
+    .toolbar-container .x-form-checkbox {
+        vertical-align: middle;
+        margin-top: -5px;
+    }
+
+    .toolbar-container label {
+        font-size: 12px;
+        margin-left: 5px;
+        line-height: 28px
+    }
+
+    ::-ms-clear {
+        display: none;
+    }
+
+    ::-ms-reveal {
+        display: none;
+    }
+}

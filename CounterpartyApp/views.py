@@ -114,8 +114,8 @@ def counterparty_edit(request, counterparty_id:int):
 
 @login_required
 def counterparty_edit(request, counterparty_id:int):
-    """ Редактирование сниппета """
-    сontext = {'pagename': 'Обновление сниппета'}
+    """ Редактирование данных контрагента """
+    сontext = {'pagename': 'Обновление данных контрагента'}
     counterparty = get_object_or_404(CounterpartyModel.objects.filter(user=request.user), id=counterparty_id)
 
     # Создаем форму на основе данных snippets'а при запросе GET

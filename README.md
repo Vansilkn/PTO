@@ -95,18 +95,87 @@
 # 1. Установить Django.
 ``` pip install django ```
 
-# 2. Настройка VsCode
-Нажать "Ctrl" + "," попадаем в кладку настройки, в правом верхнем углу нажимаем на иконку файла "Setting.json"
-Добавляем строки:
+## 2. Настройка VsCode
+# Нажать "Ctrl" + "," попадаем в кладку настройки, в правом верхнем углу нажимаем на иконку файла "Setting.json"
+# Добавляем строки:
+<!-- 
+{
     "files.autoSave": "afterDelay",
-
-    "emmet.includeLanguages": {
-        "djando-html": "html"
-    },
+    "emmet.triggerExpansionOnTab": true, 
     "files.associations": {
-        "*.html": "django-html"
-    }
+        "*.html": "django-html",
+        "*.njk": "html"
+    },
+    "emmet.useInlineCompletions": true,
+    "emmet.includeLanguages": {
+        "django-html": "html", 
+        "javascript": "javascriptreact",
+        "typescript": "typescriptreact",
+        "vue-html": "html",
+        "vue": "html",
+        "razor": "html",
+        "plaintext": "pug",
+    },
+    "emmet.showSuggestionsAsSnippets": true,
+    "emmet.showExpandedAbbreviation": "always",
+    "workbench.iconTheme": "material-icon-theme"
+} 
+-->
+
+## Обновляется только конфигурация для вашего текущего проекта
+# Если вы хотите обновить конфигурацию Emmet только для текущего 
+# рабочего пространства (проекта), а не глобально, используйте 
+# локальный файл .vscode/settings.json .
+
+# 1. В корневом каталоге вашего проекта создайте папку .vscode.
+# 2. Создайте файл settings.json в папке .vscode .
+# 3. Добавьте следующий код в свой файл settings.json
+<!-- 
+{
+  "emmet.triggerExpansionOnTab": true,
+  "files.associations": {
+    "*html": "html",
+    "*njk": "html"
+  },
+  "emmet.useInlineCompletions": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact",
+    "vue-html": "html",
+    "vue": "html",
+    "razor": "html",
+    "plaintext": "pug",
+    "django-html": "html"
+  },
+  "emmet.showSuggestionsAsSnippets": true,
+  "emmet.showExpandedAbbreviation": "always"
+}
+-->
+
+## Убедитесь, что расширение Emmet установлено и включено
+# Ещё одна вещь, которую вам следует проверить, — это установка 
+# и включение расширения Emmet.
+# Нажмите Расширения на левой боковой панели.
+# Вы также можете открыть меню Расширения, нажав:
+# Ctrl + Shift + X в Windows или Linux.
+# Command + Shift + X в macOS.
+# Введите 
+```@builtin emmet```
+
 
 # установка FTP
 ```sudo apt install vsftpd```
+
+
+
+
+
+
+## Плагины для VS Code
+# 1. Auto Complete Tag
+# 2. HTMLHint
+# 3. indent-rainbow
+# 4. Path Intellisense
+# 5. Material Icon Theme
+# 6. Live Server
 

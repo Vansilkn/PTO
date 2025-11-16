@@ -1,0 +1,113 @@
+<!doctype html>
+{% load static %}
+<html lang="ru" class="h-100">
+    <head>
+        <title>ПТО Мастер</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {% block style %}
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+            <!-- Bootstrap icons -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+            <!-- Fontawessome -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+            <!-- Custom styles for this template -->
+            <link rel="stylesheet" href="{% static 'css/style.css' %}">
+            
+            <!--  -->
+            <script defer src="{% static "js/bootstrap.bundle.min.js" %}"></script>
+        {% endblock %}
+    </head>
+    <body class="body_auth">
+        <!-- Begin page content -->
+        <div class="container">
+            <div class="row">Пepвaя cтpoкa</div>
+            <div class="row">
+                <div class="col bg-primary">Блoк l</div>
+                <div class="col bg-secondary">Блoк 2</div>
+                <div class="col bg-success">Блoк 3</div>
+                <div class="col bg-danger">Блoк 4</div>
+                <div class="col bg-warning">Блoк 5</div>
+                <div class="col bg-info">Блoк 6</div>
+                <div class="col bg-light">Блoк 7</div>
+                <div class="col bg-dark">Блoк 8</div>
+                <div class="col bg-white">Блoк 9</div>
+            </div>
+            <div class="row"></div>
+            <div class="row">вторая cтpoкa</div>
+            <div class="row">
+                <div class="col text-primary">Блoк l</div>
+                <div class="col text-secondary">Блoк 2</div>
+                <div class="col text-success">Блoк 3</div>
+                <div class="col text-danger">Блoк 4</div>
+                <div class="col text-warning">Блoк 5</div>
+                <div class="col text-info">Блoк 6</div>
+                <div class="col text-light">Блoк 7</div>
+                <div class="col text-dark">Блoк 8</div>
+                <div class="col text-muted">Блoк 9</div>
+                <div class="col text-white">Блoк 10</div>
+            </div>
+            <div class="row"></div>
+
+            <div class="row">третья cтpoкa</div>
+            <div class="row">
+                <div class="col text-primary bg-info">Блoкl</div>
+                <div class="col text-secondary">Блoк2</div>
+                <div class="col text-success bg-info">Блoк3</div>
+                <div class="col text-danger">Блoк4</div>
+                <div class="col text-warning bg-info">Блoк5</div>
+                <div class="col text-info">Блoк6</div>
+                <div class="col text-light bg-primary">Блoк7</div>
+                <div class="col text-dark">БлoкB</div>
+                <div class="col text-muted bg-info">Блoк9</div>
+                <div class="col text-white bg-primary">Блoк10</div>
+            </div>
+
+
+            <div class="row bg-primary text-white">
+                <div class="col">Обозначение границ вокруг адаптивных блоков</div>
+            </div>
+            <div class="row my-2">
+                <div class="col mx-2 bg-info border border-3">Блoк 1</div>
+                <div class="col mx-2 bg-info border-top border-5">Блок 2</div>
+                <div class="col mx-2 bg-info border-bottom border-5">Блок 3</div>
+                <div class="col mx-2 bg-info border-start border-5">Блок 4</div>
+                <div class="col mx-2 bg-info border-end border-5">Блoк 5</div>
+            </div>
+            <div class="row">
+                <span class="border"></span>
+                <span class="border-top"></span>
+                <span class="border-end"></span>
+                <span class="border-bottom"></span>
+                <span class="border-start"></span>
+            </div>
+            <div class="mb-4">
+                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input type="email" class="form-control border-success" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
+
+            <div class="h4 pb-2 mb-4 text-danger border-bottom border-danger">
+                Dangerous heading
+            </div>
+
+            <div class="p-3 bg-info bg-opacity-10 border border-info border-start-0 rounded-end">
+                Changing border color and width
+            </div>
+
+            <img src="/static/images/actkc2.png" class="rounded" alt="...">
+            <img src="/static/images/actkc2.png" class="rounded-top" alt="...">
+            <img src="/static/images/actkc2.png" class="rounded-end" alt="...">
+            <img src="/static/images/actkc2.png" class="rounded-bottom" alt="...">
+            <img src="/static/images/actkc2.png" class="rounded-start" alt="...">
+
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

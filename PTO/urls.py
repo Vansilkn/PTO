@@ -25,7 +25,7 @@ from CounterpartyApp import views as counterparty_app_views
 
 urlpatterns = [
     #=======================================================================
-    # **********  Админ ****************************************************
+    # **********  Админ  ***************************************************
     #=======================================================================
     path('admin/', admin.site.urls),
     #=======================================================================
@@ -36,6 +36,8 @@ urlpatterns = [
     #=======================================================================
     # **********  Аутентификация и авторизация  ****************************
     #=======================================================================
+    path('', main_app_views.auth_page, name="auth-page"),
+    path('auth_user', auth_app_views.auth_user, name="auth-user"),
     path('login', auth_app_views.login, name='login'),
     path('logout', auth_app_views.logout, name='logout'),
     path('register', auth_app_views.create_user, name='register'),
@@ -56,9 +58,17 @@ urlpatterns = [
     #///////////////////////////////////////////////////////////////////////
 
 
-    path('', main_app_views.index_page, name="home"),
+
+
+
+
+    path('index', main_app_views.index_page, name="home"),
+
 
     path('folder', main_app_views.add_folder, name="add-folder"),
+
+    path('test', main_app_views.test, name="test"),
+    path('test_2', main_app_views.test_2, name="test-2"),
 
 
 
