@@ -22,11 +22,11 @@
 
 ## Выгрузка и загрузка данных при работе с БД
 # Выгрузить данные из БД
-```python manage.py dumpdata MainApp --indent 4 > MainApp/fixtures/save_all.json```
-```python manage.py dumpdata AuthApp --indent 4 > AuthApp/fixtures/save_all.json```
-```python manage.py dumpdata CounterpartyApp --indent 4 > CounterpartyApp/fixtures/save_all.json```
-```python manage.py dumpdata JurnalsApp --indent 4 > JurnalsApp/fixtures/save_all.json```
-```python manage.py dumpdata ProjectsApp --indent 4 > ProjectsApp/fixtures/save_all.json```
+```python manage.py dumpdata MainApp --indent 4 > MainApp/fixtures/MainApp.json```
+```python manage.py dumpdata AuthApp --indent 4 > AuthApp/fixtures/auth.json```
+```python manage.py dumpdata CounterpartyApp --indent 4 > CounterpartyApp/fixtures/counterparty.json```
+```python manage.py dumpdata JurnalsApp --indent 4 > JurnalsApp/fixtures/jurnals.json```
+```python manage.py dumpdata ProjectsApp --indent 4 > ProjectsApp/fixtures/projects.json```
 
 # Загрузить данные в БД
 ```python manage.py loaddata MainApp/fixtures/save_all.json```
