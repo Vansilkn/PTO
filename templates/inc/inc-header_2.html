@@ -21,10 +21,10 @@
                         
                     </button>
                     <a href="{% url "home" %}" class="btn btn-primary" aria-current="page">
-                        <img class="mx-auto d-block" src="{% static 'images/tb-icons-1.png' %}" width="32" height="32" alt="Главное меню">
+                        <img class="mx-auto d-block" src="{% static 'images/navbar_img/tb-icons-1.png' %}" width="32" height="32" alt="Главное меню" title="Главное меню">
                     </a>
                     <a href="#" class="btn btn-primary">
-                        <img class="mx-auto d-block" src="{% static 'images/tb-icons-2.png' %}" width="32" height="32" alt="Рабочий стол">
+                        <img class="mx-auto d-block" src="{% static 'images/navbar_img/tb-icons-2.png' %}" width="32" height="32" alt="Рабочий стол" title="Рабочий стол">
                     </a>
                 </div>
                 {% comment %} <div class="row align-self-center">
@@ -77,14 +77,14 @@
             <div class="col-3 border border-1">
                 <div class="row pt-2">
                     <div class="col-2 px-1 border border-1" style="width: 40px;">
-                        <img class="mx-auto d-block" src="{% static 'images/logo_3.png' %}" width="32" height="32" alt="">
+                        <img class="mx-auto d-block" src="{% static 'images/logo_3.png' %}" width="32" height="32" alt="ПТО" title="ПТО">
                     </div>
                     <div class="col ms-0 ps-0 text-start text-white align-self-end border border-1">
                         <span class="ms-0">Пользователь: &nbsp;&nbsp; {{request.user.username }} </span> &nbsp;&nbsp;
                     </div>
                     <div class="col-2 px-1 border border-1">
                         <a href="{% url "logout" %}">
-                            <img class="mx-auto d-block" src="{% static 'images/exit_3.png' %}" width="32" height="32" alt="">
+                            <img class="mx-auto d-block" src="{% static 'images/exit_3.png' %}" width="32" height="32" alt="Выход" title="Выход">
                         </a>
                     </div>
                 </div>
