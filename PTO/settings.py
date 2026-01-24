@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'CounterpartyApp',
     'JurnalsApp',
     'ProjectsApp',
+    'TOyTB_App',
 
     'django_extensions',
 ]

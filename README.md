@@ -29,11 +29,11 @@
 ```python manage.py dumpdata ProjectsApp --indent 4 > ProjectsApp/fixtures/projects.json```
 
 # Загрузить данные в БД
-```python manage.py loaddata MainApp/fixtures/save_all.json```
-```python manage.py loaddata AuthApp/fixtures/save_all.json```
-```python manage.py loaddata CounterpartyApp/fixtures/save_all.json```
-```python manage.py loaddata JurnalsApp/fixtures/save_all.json```
-```python manage.py loaddata ProjectsApp/fixtures/save_all.json```
+```python manage.py loaddata MainApp/fixtures/MainApp.json```
+```python manage.py loaddata AuthApp/fixtures/auth.json```
+```python manage.py loaddata CounterpartyApp/fixtures/counterparty.json```
+```python manage.py loaddata JurnalsApp/fixtures/jurnals.json```
+```python manage.py loaddata ProjectsApp/fixtures/projects.json```
 
 ## ****************************************************************************************
 
