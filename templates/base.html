@@ -29,8 +29,8 @@
         {% endblock %}
     </main> {% endcomment %}
     {% block page %}
-        {% block sidebar %}
-        {% endblock %}
+        {% comment %} {% block sidebar %}
+        {% endblock %} {% endcomment %}
         {% block content %}
         {% endblock %} 
     {% endblock %}

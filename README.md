@@ -16,8 +16,12 @@
 # 5. Применить миграции
 ``` python manage.py migrate ```
 
-# 6. Запуск сервера
+# 6. Создаем суперпользователя
+``` python manage.py createsuperuser ```
+
+# 7. Запуск сервера
 ``` python manage.py runserver ```
+
 
 
 ## Выгрузка и загрузка данных при работе с БД
