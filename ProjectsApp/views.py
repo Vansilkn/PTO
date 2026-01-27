@@ -42,7 +42,7 @@ def projects_page (request):
         'pagename':'Просмотр списка проектов',
         'projects': projects
     }
-    return render(request, 'pages/view_projects.html', context)
+    return render(request, 'view_projects.html', context)
 
 
 @login_required
@@ -53,7 +53,7 @@ def get_project (request, project_id: int):
         project = ProjectModel.objects.get(id=project_id)
     except ObjectDoesNotExist:
         return render(request, 'page/errors.html', 
-                      context | {"error": f"Проект {project_id} не найден."})
+                    context | {"error": f"Проект {project_id} не найден."})
     else:
         context['project'] = project
         return render(request, 'pages/projects_detail.html', context)
