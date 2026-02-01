@@ -50,8 +50,8 @@ urlpatterns = [
     #=======================================================================
     # **********  ПРОЕКТЫ  ****************************
     #=======================================================================
-    path('projects/add', projects_app_views.add_project_page, name="add-project"),
     path('projects/list', projects_app_views.projects_page, name="projects-list"),
+    path('projects/add', projects_app_views.add_project_page, name="add-project"),
     path('projects/<int:project_id>/', projects_app_views.get_project, name="project-detail"),
     path('projects/<int:project_id>/delete', projects_app_views.project_delete, name="project-delete"),
     path('projects/<int:project_id>/edit', projects_app_views.project_edit, name="project-edit"),
@@ -64,10 +64,7 @@ urlpatterns = [
 
 
     path('index', main_app_views.index_page, name="home"),
-
-
     path('folder', main_app_views.add_folder, name="add-folder"),
-
     path('test', main_app_views.test, name="test"),
     path('test_2', main_app_views.test_2, name="test-2"),
 
@@ -75,13 +72,20 @@ urlpatterns = [
 
     #///////////////////////////////////////////////////////////////////////
     #=======================================================================
-    # Контрагенты - добавление, удаление, поиск
+    # ****** Контрагенты - добавление, удаление, поиск *********************
     #=======================================================================
-    path('counterparties/add', counterparty_app_views.add_counterparty_page, name="add-counterparty"),
     path('counterparties/list', counterparty_app_views.counterparty_page, name="counterparty-list"),
+    path('counterparties/add', counterparty_app_views.add_counterparty_page, name="add-counterparty"),
     path('counterparties/<int:counterparty_id>/', counterparty_app_views.get_counterparty, name="counterparty-detail"),
     path('counterparties/<int:counterparty_id>/delete', counterparty_app_views.counterparty_delete, name="counterparty-delete"),
     path('counterparties/<int:counterparty_id>/edit', counterparty_app_views.counterparty_edit, name="counterparty-edit"),
+    #=======================================================================
+    path('sro/list', counterparty_app_views.sro_page, name="sro-list"),
+    path('sro/add', counterparty_app_views.add_sro_page, name="add-sro"),
+    path('sro/<int:sro_id>/', counterparty_app_views.get_sro, name="sro-detail"),
+    path('sro/<int:sro_id>/delete', counterparty_app_views.sro_delete, name="sro-delete"),
+    path('sro/<int:sro_id>/edit', counterparty_app_views.sro_edit, name="sro-edit"),
+
     #=======================================================================
     #///////////////////////////////////////////////////////////////////////
 

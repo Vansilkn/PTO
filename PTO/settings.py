@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Отслеживание django моих приложений
     'MainApp',
     'AuthApp',
     'CounterpartyApp',
@@ -62,6 +63,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'PTO.urls'
+
 
 TEMPLATES = [
     {
@@ -89,7 +91,6 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-
     }
 }
 

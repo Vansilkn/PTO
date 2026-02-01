@@ -1,14 +1,13 @@
 from django.forms import ModelForm, TextInput, Textarea, ValidationError, CheckboxInput
 from CounterpartyApp.models import CounterpartyModel
-from django.core.exceptions import ValidationError
 
 
 class CounterpartyForm(ModelForm):
     class Meta:
         model = CounterpartyModel
         # Описываем поля, которые будем заполнять в форме
-        fields = ['name_sokr', 'name_poln', 'ur_adres', 'pocht_adres', 'inn', 'kpp', 'ogrn', 
-                  'name_bank', 'rs', 'ks', 'bik', 'phone', 'email']    
+        fields = ['type_of_counterparty', 'name_sokr', 'name_poln', 'ur_adres', 'pocht_adres', 
+                'inn', 'kpp', 'ogrn', 'name_bank', 'rs', 'ks', 'bik', 'phone', 'email', 'website']    
         # исключение поля или полей через команду
         #    exclude = ['creation_date']
 
@@ -27,21 +26,31 @@ class CounterpartyForm(ModelForm):
         #           "email": "e-mail", }
         #    "public": "Public(checked) / Private(unchecked)",}
 
-        labels = {"name_sokr": "",
-                  "name_poln": "", 
-                  "ur_adres": "", 
-                  "pocht_adres": "",
-                  "inn": "", 
-                  "kpp": "",
-                  "ogrn": "",
-                  "name_bank": "",
-                  "rs": "", 
-                  "ks": "", 
-                  "bik": "",
-                  "phone": "",
-                  "email": "",
-                  "public": "Public(checked) / Private(unchecked)",}
+        labels = {
+                "type_of_counterparty": "",
+                "name_sokr": "",
+                "name_poln": "", 
+                "ur_adres": "", 
+                "pocht_adres": "",
+                "inn": "", 
+                "kpp": "",
+                "ogrn": "",
+                "name_bank": "",
+                "rs": "", 
+                "ks": "", 
+                "bik": "",
+                "phone": "",
+                "email": "",
+                "website": "",
+                "public": "Public(checked) / Private(unchecked)",
+                }
+
         widgets = {
+            "type_of_counterparty": TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Вид контрагента: ",
+                "style": "max-width: 700px"
+            }),
             "name_sokr": TextInput(attrs={
                 "class": "form-control",
                 "placeholder": "Название организации (сокращенно):",
@@ -107,6 +116,11 @@ class CounterpartyForm(ModelForm):
             "email": TextInput(attrs={
                 "class": "form-control",
                 "placeholder": "email:",
+                "style": "max-width: 300px"
+            }),
+            "website": TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Сайт:",
                 "style": "max-width: 300px"
             }),
             "public": CheckboxInput(attrs={"value": "True"

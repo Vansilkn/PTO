@@ -2,34 +2,24 @@
 {% load static %}
 {% block title %}Проекты{% endblock title %}
 
+<!-- Begin page sidebar -->
 {% block sidebar %}
-    <div class="list-group" id="list-tab" role="tablist">
-        <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="{% url "projects-list" %}" role="tab" aria-controls="list-home">Список проектов</a>
-        <a class="list-group-item list-group-item-action" id="list-add-projects-list" data-bs-toggle="list" href="#list-add-projects" role="tab" aria-controls="list-add-projects">Добавить проект</a>
+    {% comment %} <div class="list-group" id="list-tab" role="tablist">  {% endcomment %}
+    <div class="list-group" role="tablist"> 
+        {% comment %} <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="{% url "projects-list" %}" role="tab" aria-controls="list-home">Список проектов</a>
+        <a class="list-group-item list-group-item-action" id="list-add-projects-list" data-bs-toggle="list" href="#list-add-projects" role="tab" aria-controls="list-add-projects">Добавить проект</a> {% endcomment %}
+        {% if request.user.is_authenticated %}
+        <a class="list-group-item list-group-item-action active" href="{% url "projects-list" %}" role="tab">Список проектов</a>
+        {% endif %}
+        {% if request.user.is_authenticated %}
+        <a class="list-group-item list-group-item-action" href="{% url "add-project" %}" role="tab">Добавить проект</a>
+        {% endif %}
     </div>
 {% endblock %}
 
-{% comment %} {% block content %}
-    <!-- Begin page content -->
-    <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-            
-        </div>
-        <div class="tab-pane fade" id="list-add-profile" role="tabpanel" aria-labelledby="list-add-profile-list">
-            
-        </div>
-    </div> 
-{% endblock %} {% endcomment %}
 
-
-
-
-
-
-
-
-{% block content %}
 <!-- Begin page content -->
+{% block content %}
     <div class="container ">
         <div class="row">
             <div class="col text-center">
@@ -37,7 +27,7 @@
                 <hr>
             </div>
         </div>
-        <div class="row">
+        {% comment %} <div class="row">
             <div class="col">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     {% if request.user.is_authenticated %}
@@ -45,7 +35,7 @@
                     {% endif %}
                 </div>
             </div>
-        </div>
+        </div> {% endcomment %}
         <div class="row">
             <div class="col">
                 <table class="table table-striped">

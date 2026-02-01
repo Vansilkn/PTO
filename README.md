@@ -1,57 +1,83 @@
-### PTO
+# PTO
+<!-- Описать приложение -->
 
-## Инструкция по развертыванию проекта
-# 1. Создайте новое окружение:
+
+# ************ Инструкция по развертыванию проекта ***************************************
+## 1. Создайте новое окружение:
 ```python3 -m venv django_venv```
 
-# 2. Активируем виртуальное окружение:
+## 2. Активируем виртуальное окружение:
 ```source django_venv/bin/activate```
 
-# 3. Установка модулей виртуальное окружение:
+## 3. Установка модулей виртуальное окружение:
 ``` pip install -r requirements.txt ```
+### 3.1. Загрузка списка модулей в requirements.txt
+  ``` python -m pip freeze > requirements.txt ```
 
-# 4. Загрузка списка модулей в requirements.txt
-``` python -m pip freeze > requirements.txt ```
 
-# 5. Применить миграции
+## 4. Применить миграции
 ``` python manage.py migrate ```
+### 4.1. Если нам нужно сбросить миграцию до какой-то определенной, например с миграции 0005 до миграции 0003, то выполним следующую команду:
+``` python manage.py migrate AppName 0003 ```
+### --- ИЛИ ---
+```python manage.py migrate AppName 0003_migration_name```
+### 4.2. В случае, когда нам нужно сбросить все миграции определенного приложения Джанго, мы можем использовать команду:
+```python manage.py migrate AppName zero```
 
-# 6. Создаем суперпользователя
+
+## 5. Создаем суперпользователя
 ``` python manage.py createsuperuser ```
 
-# 7. Запуск сервера
+## 6. Запуск сервера
 ``` python manage.py runserver ```
+# ****************************************************************************************
 
 
 
+
+# ****************************************************************************************
+# Для создания нового приложения в текущем проекте:
+``` python manage.py startapp <Наименование проекта> ```
+
+# ****************************************************************************************
+
+
+# *********** Работа с БД ****************************************************************
 ## Выгрузка и загрузка данных при работе с БД
-# Выгрузить данные из БД
+### Выгрузить данные из БД
 ```python manage.py dumpdata MainApp --indent 4 > MainApp/fixtures/MainApp.json```
 ```python manage.py dumpdata AuthApp --indent 4 > AuthApp/fixtures/auth.json```
 ```python manage.py dumpdata CounterpartyApp --indent 4 > CounterpartyApp/fixtures/counterparty.json```
 ```python manage.py dumpdata JurnalsApp --indent 4 > JurnalsApp/fixtures/jurnals.json```
 ```python manage.py dumpdata ProjectsApp --indent 4 > ProjectsApp/fixtures/projects.json```
 
-# Загрузить данные в БД
+### Загрузить данные в БД
 ```python manage.py loaddata MainApp/fixtures/MainApp.json```
 ```python manage.py loaddata AuthApp/fixtures/auth.json```
 ```python manage.py loaddata CounterpartyApp/fixtures/counterparty.json```
 ```python manage.py loaddata JurnalsApp/fixtures/jurnals.json```
 ```python manage.py loaddata ProjectsApp/fixtures/projects.json```
 
-## ****************************************************************************************
-
-# Для создания нового приложения в текущем проекте:
-``` python manage.py startapp <Наименование проекта> ```
+## ***************************************************************************************
 
 
-## ****************************************************************************************
+# ********** Работа с интепритаторами ****************************************************
+## Интепритатор `sqlite3`
+### 1. Установка интепритатора `sqlite3`
+``` sudo apt install sqlite3 ```
 
+## Установка пакета `django-extensions` для подключения улучшеного интепритатор `ipython`
+``` python -m pip install django-extensions ```
 
-## Запуск `ipython` в контексте `django` приложений
+## Улучшенный интепритатор `ipython`
+### 1. Установка интепритатора `ipython`
+``` python -m pip install django-extensions ipython```
+### 2. Запуск `ipython` в контексте `django` приложений
 ``` python manage.py shell_plus --ipython ```
+### Добавление `--print-sql` для отображение sql-кода 
+``` python manage.py shell_plus --ipython --print-sql```
 
-
+# ****************************************************************************************
 
 
 

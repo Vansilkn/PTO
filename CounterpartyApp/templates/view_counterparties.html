@@ -1,8 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block title %}Контрагенты{% endblock title %}
 
-{% block content %}
+<!-- Begin page sidebar -->
+{% block sidebar %}
+    {% comment %} <div class="list-group" id="list-tab" role="tablist"> {% endcomment %}
+    <div class="list-group">
+        {% if request.user.is_authenticated %}
+        <a class="list-group-item list-group-item-action active" href="{% url "counterparty-list" %}" role="tab">Список контрагентов</a>
+        <a class="list-group-item list-group-item-action" href="{% url "add-counterparty" %}" role="tab">Добавить контрагентов</a>
+        {% endif %}
+    </div>
+{% endblock %}
 
 <!-- Begin page content -->
+{% block content %}
     <div class="container" style="margin-top: 48px;">
         <div class="row">
             <div class="col text-center">
@@ -14,7 +26,7 @@
             <div class="col" style="padding: 0px 20px 10px 0px;">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     {% if request.user.is_authenticated %}
-                        <a class="btn btn-primary btn-sm" href="{% url "add-counterparty" %}">Добавить кнтрагента </a>
+                        <a class="btn btn-primary btn-sm" href="{% url "add-counterparty" %}">Добавить контрагента </a>
                     {% endif %}
                 </div>
             </div>
@@ -25,17 +37,21 @@
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Сокращенное наименование организации</th>
-                            {% comment %} <th scope="col">Полное наименование организации</th>
+                            <th scope="col">Наименование организации</th>
+                            {% comment %}
+                            <th scope="col">Полное наименование организации</th>
                             <th scope="col">Юридический адрес</th>
-                            <th scope="col">Почтовый адрес</th> {% endcomment %}
+                            <th scope="col">Почтовый адрес</th> 
+                            {% endcomment %}
                             <th scope="col">ИНН</th>
                             <th scope="col">КПП</th>
                             <th scope="col">ОГРН</th>
-                            {% comment %} <th scope="col">Наименование банка</th>
+                            {% comment %} 
+                            <th scope="col">Наименование банка</th>
                             <th scope="col">Расчетный счет</th>
                             <th scope="col">Кор. счет</th>
-                            <th scope="col">БИК</th> {% endcomment %}
+                            <th scope="col">БИК</th> 
+                            {% endcomment %}
                             <th scope="col">Номер телефона</th>
                             <th scope="col">e-mail</th>
                         </tr>

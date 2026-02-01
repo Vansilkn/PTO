@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
 
+<!-- Begin page sidebar -->
+{% block sidebar %}
+    <div class="list-group" id="list-tab" role="tablist">
+        <a class="list-group-item list-group-item-action" href="{% url "counterparty-list" %}" role="tab">Список контрагентов</a>
+        <a class="list-group-item list-group-item-action active" href="{% url "add-counterparty" %}" role="tab">Добавить контрагентов</a>
+        <a class="list-group-item list-group-item-action" href="{% url "sro-list" %}" role="tab">СРО</a>
+    </div>
+{% endblock %}
+
+<!-- Begin page content -->
 {% block content %}
-    <!-- Begin page content -->
     <div class="container bg-white">
         <div class="row">
             <div class="col text-center">
@@ -13,6 +22,14 @@
         <div class="row">
             <div class="col">
                 <fieldset disabled>
+
+                    <div class="row disabled">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Вид контрагента:</label>
+                            <input type="text" value="{{counterparty.type_of_counterparty}}" class="form-control" id="exampleFormControlInput1">
+                        </div>
+                    </div>
+
                     <div class="row disabled">
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Сокращенное наименование организации:</label>
@@ -23,6 +40,7 @@
                             <input type="text" value="{{counterparty.name_poln}}" class="form-control" id="exampleFormControlInput1">
                         </div>
                     </div>
+
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Юридический адрес:</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{counterparty.ur_adres}}</textarea>
@@ -33,6 +51,7 @@
                         <textarea class="form-control" id="exampleFormControlTextarea2" rows="3">{{counterparty.pocht_adres}}</textarea>
                     </div>
 
+                    {% comment %} 
                     <div class="row mb-3">
                         <div class="col-8">
                             Юридический адрес: <input type="text" value="{{counterparty.ur_adres}}" class="form-label">
@@ -43,7 +62,8 @@
                         <div class="col-4">
                             Почтовый адрес: <input type="text" value="{{counterparty.pocht_adres}}" class="form-label">
                         </div>
-                    </div>
+                    </div> 
+                    {% endcomment %}
 
                     <div class="row disabled">
                         <div class="col-4">
@@ -56,11 +76,12 @@
                             БИК: <input type="text" value="{{counterparty.bik}}" class="form-control">
                             Номер телефона: <input type="text" value="{{counterparty.phone}}" class="form-control">
                             E-mail: <input type="text" value="{{counterparty.email}}" class="form-control">
+                            Сайт: <input type="text" value="{{counterparty.website}}" class="form-control">
                         </div>
                     </div>
 
 
-{% comment %} 
+                        {% comment %} 
                         <div class="col col-8">
                             Сокращенное наименование организации: <input type="text" value="{{counterparty.name_sokr}}" class="form-control">
                             Полное наименование организации: <input type="text" value="{{counterparty.name_poln}}" class="form-control">
@@ -75,10 +96,81 @@
                             БИК: <input type="text" value="{{counterparty.bik}}" class="form-control">
                             Номер телефона: <input type="text" value="{{counterparty.phone}}" class="form-control">
                             E-mail: <input type="text" value="{{counterparty.email}}" class="form-control">
-                        </div> {% endcomment %}
+                        </div> 
+                        {% endcomment %}
                 </fieldset>
                 <hr>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col">
+                <fieldset disabled>
+
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col text-center">
+                <h1>Сведение о саморегулирующей организации:</h1>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="padding: 0px 20px 10px 0px;">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    {% if request.user.is_authenticated %}
+                        <a class="btn btn-primary btn-sm" href="{% url "add-sro" %}">+</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Наименование организации</th>
+                            <th scope="col">Вид саморегулируемой организации</th>
+                            <th scope="col">Регистрационный номер в ГРСРО</th>
+                            <th scope="col">Регистрационный номер в РЧСРО</th>
+                            <th scope="col">Дата регистрации в РЧСРО</th>
+                            <th scope="col">Статус</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sroonsmr in sroonsmrs %}
+                            <tr>
+                                <td scope="row">{{ sroonsmr.id }} </td>
+                                <td>
+                                    <a href="{% url "sroonsmr-detail" sroonsmr.id %}">
+                                        {{sroonsmr.name_sokr_sro_on_smr}}
+                                    </a>
+                                    <a href="{% url "sroonsmr-edit" sroonsmr.id %}">
+                                        <i style="color: blue;" class="bi bi-pencil-square"></i>
+                                    </a>
+
+                                    <a href="{% url "sroonsmr-delete" sroonsmr.id %}">
+                                        <i style="color: red;" class="bi bi-trash"></i>
+
+                                </td>
+                                <td>{{sroonsmr.type_of_counterparty_sro}}</td>
+                                <td>{{sroonsmr.reg_nymber_in_gsro}}</td>
+                                <td>{{sroonsmr.reg_nymber_in_rhsro}}</td>
+                                <td>{{sroonsmr.date_reg_in_rhsro}}</td>
+                                <td>{{sroonsmr.status_sro}}</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="4"> Нет сведений о СРО! </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody> 
+                </table> 
+            </div>
+        </div>
+
     </div>
 {% endblock %}
