@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 
 # Раздел "Карточка контрагента"
 
-# @login_required
+@login_required
 def counterparty_page (request):
     """ Получаем все элементы из базы данных. """
     counterparties = CounterpartyModel.objects.filter(public=True) 
@@ -130,6 +130,9 @@ def sro_page (request):
     }
     return render(request, 'view_counterparties.html', context)
 
+
+
+
 @login_required
 def add_sro_page (request):
     """ Добавляем новую СРО """
@@ -155,6 +158,8 @@ def add_sro_page (request):
             return redirect("sro-list") # URL для списка карточек контрагентов
         return render(request, "pages/add_sro.html", context={"form_sro": form})
     return HttpResponseNotAllowed(["POST"], "Вы должны сделать POST-запрос на добавление данных в бызу двнных.")
+
+
 
 
 @login_required

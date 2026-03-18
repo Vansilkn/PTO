@@ -4,7 +4,8 @@
 {% block sidebar %}
     <div class="list-group" id="list-tab" role="tablist">
         <a class="list-group-item list-group-item-action" href="{% url "counterparty-list" %}" role="tab">Список контрагентов</a>
-        <a class="list-group-item list-group-item-action active" href="{% url "add-counterparty" %}" role="tab">Добавить контрагентов</a>
+        <a class="list-group-item list-group-item-action active" href="{% url "add-counterparty" %}" role="tab">Карточка контрагента</a>
+        <a class="list-group-item list-group-item-action" href="#" role="tab">Договоры</a>
         <a class="list-group-item list-group-item-action" href="{% url "sro-list" %}" role="tab">СРО</a>
     </div>
 {% endblock %}
@@ -15,6 +16,7 @@
         <div class="row">
             <div class="col text-center">
                 <h1>{{ pagename }}</h1>
+                <h1>{{counterparty.name_sokr}}</h1>
                 <hr>
             </div>
         </div>
@@ -32,12 +34,12 @@
 
                     <div class="row disabled">
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Сокращенное наименование организации:</label>
-                            <input type="text" value="{{counterparty.name_sokr}}" class="form-control" id="exampleFormControlInput1">
+                            <label for="exampleFormControlInput2" class="form-label">Сокращенное наименование организации:</label>
+                            <input type="text" value="{{counterparty.name_sokr}}" class="form-control" id="exampleFormControlInput2">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Полное наименование организации:</label>
-                            <input type="text" value="{{counterparty.name_poln}}" class="form-control" id="exampleFormControlInput1">
+                            <label for="exampleFormControlInput3" class="form-label">Полное наименование организации:</label>
+                            <input type="text" value="{{counterparty.name_poln}}" class="form-control" id="exampleFormControlInput3">
                         </div>
                     </div>
 

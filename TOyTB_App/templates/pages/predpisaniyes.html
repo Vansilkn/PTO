@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Предписания{% endblock title %}
+
+<!-- Begin page sidebar -->
+{% block sidebar %}
+    <div class="list-group">
+        {% if request.user.is_authenticated %}
+        <a class="list-group-item list-group-item-action" href="{% url "toytb" %}" role="tab">Главная</a>
+        <a class="list-group-item list-group-item-action" href="#" role="tab">Документы</a>
+        <a class="list-group-item list-group-item-action active" href="#" role="tab">Предписания</a>
+        <a class="list-group-item list-group-item-action" href="#" role="tab">Отчеты</a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+<!-- Begin page content -->
+{% block content %}
+    <div class="container" style="margin-top: 48px;">
+        <div class="row">
+            <div class="col text-center">
+                <h2>{{ pagename }}</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="padding: 0px 20px 10px 0px;">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    {% if request.user.is_authenticated %}
+                        <a class="btn btn-primary btn-sm" href="{% url "add-predpisaniye" %}">Создать предписание</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Номер предписания</th>
+                            <th scope="col">Дата составления предписания</th>
+                            <th scope="col">Юридическое лицо</th>
+                            <th scope="col">Объект</th>
+                            <th scope="col">Дата исполнения предписания</th>
+                            <th scope="col">Статус</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for predpisaniye in predpisaniyes %}
+                            <tr>
+                                <td scope="row">{{ predpisaniye.id }} </td>
+                                <td>
+                                    {% if predpisaniye.user == request.user %}
+                                        <a href="{% url "predpisaniye-edit" predpisaniye.id %}">
+                                            <i style="color: blue;" class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <a href="{% url "predpisaniye-delete" predpisaniye.id %}">
+                                            <i style="color: red;" class="bi bi-trash"></i>
+                                        </a>
+                                    {% endif %}
+                                    <a href="{% url "predpisaniye-detail" predpisaniye.id %}">{{predpisaniye.number_predpisaniye}}</a>
+                                </td>
+                                <td>{{predpisaniye.date_create_predpisaniye}}</td>
+                                <td>{{predpisaniye.name_counterparty}}</td>
+                                <td>{{predpisaniye.name_object}}</td>
+                                <td>{{predpisaniye.date_execution_predpisaniye}}</td>
+                                <td>{{predpisaniye.execution_status}}</td>
+                                {% comment %} 
+                                <td>{{ predpisaniye.user.username }}</td> 
+                                {% endcomment %}
+                                {% comment %} 
+                                <td>
+                                    {% if predpisaniye.public %}
+                                        Публичный
+                                    {% else %} 
+                                        Приватный
+                                    {% endif %}
+                                </td>  
+                                {% endcomment %}
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="4"> Предписания отсутствуют! </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody> 
+                </table>
+
+                <div align = "right">
+                    <i style="color: gray;">Всего предписаний: {{ predpisaniyes.count }} </i>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

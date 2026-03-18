@@ -22,6 +22,10 @@ from AuthApp import views as auth_app_views
 from MainApp import views as main_app_views
 from ProjectsApp import views as projects_app_views
 from CounterpartyApp import views as counterparty_app_views
+from TOyTB_App import views as toytb_app_views
+
+
+
 
 urlpatterns = [
     #=======================================================================
@@ -88,6 +92,22 @@ urlpatterns = [
 
     #=======================================================================
     #///////////////////////////////////////////////////////////////////////
+
+
+    #///////////////////////////////////////////////////////////////////////
+    #=======================================================================
+    # ****** ТО и ТБ, ООС **************************************************
+    #=======================================================================
+    path('toytb', toytb_app_views.toytb_page, name="toytb"),
+    path('predpisaniye/list', toytb_app_views.predpisaniye_page, name="predpisaniye-list"),
+    path('predpisaniye/add', toytb_app_views.add_predpisaniye_page, name="add-predpisaniye"),
+    path('predpisaniyes/<int:predpisaniye_id>/', toytb_app_views.get_predpisaniye, name="predpisaniye-detail"),
+    path('predpisaniyes/<int:predpisaniye_id>/delete', toytb_app_views.predpisaniye_delete, name="predpisaniye-delete"),
+    path('predpisaniyes/<int:predpisaniye_id>/edit', toytb_app_views.predpisaniye_edit, name="predpisaniye-edit"),
+    #=======================================================================
+    #///////////////////////////////////////////////////////////////////////
+
+
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

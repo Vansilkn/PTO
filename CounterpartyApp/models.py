@@ -43,29 +43,30 @@ class CounterpartyModel(models.Model):
 
 class SROModel(models.Model):
     """ Добавление модели СРО контрагента """
-
-    name_poln_sro = models.CharField(max_length=100)
-    name_sokr_sro = models.CharField(max_length=100)
-    type_of_counterparty_sro = models.CharField(max_length=100)
+    nymber_vipiski_sro = models.CharField(max_length=100)
+    date_vipiski_sro = models.CharField(max_length=100)
+    #--------------------------
+    name_poln_sro = models.CharField(max_length=300)
+    name_sokr_sro = models.CharField(max_length=300)
     ur_adres = models.TextField(max_length=300)
-
+    #--------------------------
+    name_poln_counter = models.CharField(max_length=300)
     reg_nymber_in_grsro = models.CharField(max_length=100)
-
 
 # 2. Сведения о членстве индивидуального предпринимателя или юридического лица 
 # в саморегулируемой организации:
     reg_nymber_in_rhsro = models.CharField(max_length=100)
-    date_reg_in_rhsro = models.DateField(auto_now=True, verbose_name="Дата регистрации")
+    date_reg_in_rhsro = models.CharField(max_length=100)
 
 # 3.Сведения о наличии у члена саморегулируемой организации права выполнения 
 # работ и обеспечении имущественной ответственности:
 ## 3.1.
-    stroitelstvo = models.CharField(max_length=100)
-    reconsrukcya = models.CharField(max_length=100)
-    kap_remont = models.CharField(max_length=100)
-    demontaj_kap_stroitelstva = models.CharField(max_length=100)
-    inj_iziscanya = models.CharField(max_length=100)
-    psd = models.CharField(max_length=100)
+    stroitelstvo = models.BooleanField(default=False)
+    reconsrukcya = models.BooleanField(default=False)
+    kap_remont = models.BooleanField(default=True)
+    demontaj_kap_stroitelstva = models.BooleanField(default=True)
+    inj_iziscanya = models.BooleanField(default=True)
+    psd = models.BooleanField(default=True)
 
     date_1 = models.DateTimeField(auto_now=True, verbose_name="Дата")
     date_2 = models.DateTimeField(auto_now=True, verbose_name="Дата")
@@ -107,6 +108,7 @@ class SROModel(models.Model):
         return f'Контрагент {self.name_sokr_sro_on_smr}, {self.name_poln_sro_on_smr}'
 
     def __str__(self):
+        """Строка для представления объекта SROModel (например, в административной панели и т.д.)."""
         return f'{self.name_sokr_sro_on_smr}'
 
 

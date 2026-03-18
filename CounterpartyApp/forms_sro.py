@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput, Textarea, ValidationError, CheckboxInput
+from django.forms import ModelForm, TextInput, Textarea, CheckboxInput, DateInput, EmailInput, NumberInput, Select, FileInput, ValidationError
 from CounterpartyApp.models import SROModel
 
 
@@ -7,9 +7,16 @@ class SROForm(ModelForm):
     class Meta:
         model = SROModel
         # Описываем поля, которые будем заполнять в форме
-        fields = ['name_poln_sro', 'name_sokr_sro', 'type_of_counterparty_sro', 'ur_adres',
-                  'reg_nymber_in_grsro', 'reg_nymber_in_rhsro', 
-                #   'date_reg_in_rhsro', 
+        fields = ['nymber_vipiski_sro', 'date_vipiski_sro',
+                  #--------------------------
+                  'name_poln_sro', 'name_sokr_sro', 'ur_adres',
+                  #--------------------------
+                  'name_poln_counter', 'reg_nymber_in_grsro', 'reg_nymber_in_rhsro', 'date_reg_in_rhsro',
+                  #--------------------------
+                'stroitelstvo', 'reconsrukcya', 'kap_remont', 'demontaj_kap_stroitelstva',
+                'inj_iziscanya', 'psd',  
+                # # 'date_1', 'date_2', 'date_3',
+                # '', '', '', '', '', '', '', '', '', '', '', '', '', 
                   ]
 
         # исключение поля или полей через команду
@@ -30,17 +37,47 @@ class SROForm(ModelForm):
         #           "email": "e-mail", }
         #    "public": "Public(checked) / Private(unchecked)",}
 
-        labels = {"name_poln_sro": "",
+        labels = {"nymber_vipiski_sro":"Регистрационный номер выписки:",
+                  "date_vipiski_sro":"Дата формирования выписки:",
+                  #--------------------------
+                  "name_poln_sro": "",
                   "name_sokr_sro": "", 
-                  "type_of_counterparty_sro": "", 
                   "ur_adres": "",
+                  #--------------------------
+                  "name_poln_counter":"",
                   "reg_nymber_in_grsro": "", 
                   "reg_nymber_in_rhsro": "",
-                #   "date_reg_in_rhsro": "",
+                  "date_reg_in_rhsro": "",
+                  #--------------------------
+                  "stroitelstvo": "",
+                  "reconsrukcya": "",
+                  "kap_remont": "",
+                  "demontaj_kap_stroitelstva": "",
+                  "inj_iziscanya": "",
+                  "psd": "",
+                  "date_1": "",
+                  "date_2": "",
+                  "date_3": "",
+                #   "":"",
+                  
+
 
                   "public": "Public(checked) / Private(unchecked)",
                   }
+
+
         widgets = {
+            "nymber_vipiski_sro": TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "000000000000-00000000-0000",
+                "style": "max-width: 300px"
+            }),
+            "date_vipiski_sro": TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "01.01.2026",
+                "style": "max-width: 200px"
+            }),
+            #-----------------------------------------------------
             "name_poln_sro": TextInput(attrs={
                 "class": "form-control",
                 "placeholder": "Наименование саморегулируемой организации (полное):",
@@ -51,16 +88,17 @@ class SROForm(ModelForm):
                 "placeholder": "Наименование саморегулируемой организации (сокращенно):",
                 "style": "max-width: 700px"
             }),
-            "type_of_counterparty_sro": TextInput(attrs={
-                "class": "form-control",
-                "placeholder": "Вид саморегулируемой организации:",
-                "style": "max-width: 700px"
-            }),
             "ur_adres": Textarea(attrs={
                 "placeholder": "Адрес места нахождения саморегулируемой организации:",
                 "rows": 3,
                 "class": "input-large",
                 "style": "width: 50% !important; resize: vertical !important;"
+            }),
+            #-----------------------------------------------------
+            "name_poln_counter": TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Полное наименование юридического лица:",
+                "style": "max-width: 700px"
             }),
             "reg_nymber_in_grsro": TextInput(attrs={
                 "class": "form-control",
@@ -72,11 +110,52 @@ class SROForm(ModelForm):
                 "placeholder": "Регистрационный номер члена в реестре членов саморегулируемой организации:",
                 "style": "max-width: 300px"
             }),
-            # "date_reg_in_rhsro": TextInput(attrs={
-            #     "class": "form-control",
-            #     "placeholder": "Дата регистрации юридического лица или индивидуального предпринимателя в реестре:",
-            #     "style": "max-width: 300px"
-            # }),
+            #-----------------------------------------------------
+            "date_reg_in_rhsro": TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Дата регистрации юридического лица или индивидуального предпринимателя в реестре:",
+                "style": "max-width: 300px"
+            }),
+            "stroitelstvo": CheckboxInput(attrs={
+                "class": "form-control",
+                "placeholder": "Строительство",
+                "style": "max-width: 300px",
+            }),
+
+
+
+                #   "stroitelstvo": "",
+                #   "reconsrukcya": "",
+                #   "kap_remont": "",
+                #   "demontaj_kap_stroitelstva": "",
+                #   "inj_iziscanya": "",
+                #   "psd": "",
+
+
+
+
+            "date_1": DateInput(attrs={
+                "class": "form-control",
+                "placeholder": "Дата регистрации юридического лица или индивидуального предпринимателя в реестре:",
+                "style": "max-width: 300px"
+            }),
+            "date_2": DateInput(attrs={
+                "class": "form-control",
+                "placeholder": "Дата регистрации юридического лица или индивидуального предпринимателя в реестре:",
+                "style": "max-width: 300px"
+            }),
+            "date_3": DateInput(attrs={
+                "class": "form-control",
+                "placeholder": "Дата регистрации юридического лица или индивидуального предпринимателя в реестре:",
+                "style": "max-width: 300px"
+            }),
+
+
+
+
+
+
+
             "public": CheckboxInput(attrs={"value": "True"
             }),
         }

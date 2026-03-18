@@ -3,10 +3,13 @@
 <!-- Begin page sidebar -->
 {% block sidebar %}
     <div class="list-group" id="list-tab" role="tablist">
-        <a class="list-group-item list-group-item-action" href="{% url "counterparty-list" %}" role="tab">Список контрагентов</a>
-        <a class="list-group-item list-group-item-action active" href="{% url "add-counterparty" %}" role="tab">Карточка контрагента</a>
-        <a class="list-group-item list-group-item-action" href="#" role="tab">Договоры</a>
-        <a class="list-group-item list-group-item-action" href="{% url "sro-list" %}" role="tab">СРО</a>
+        <a class="list-group-item list-group-item-action" href="#" role="tab">Общие вопросы</a>
+        <a class="list-group-item list-group-item-action" href="#" role="tab">Охрана труда</a>
+        <a class="list-group-item list-group-item-action" href="#" role="tab">Пожарная безопасность</a>
+        <a class="list-group-item list-group-item-action" href="№" role="tab">Электробезопасность</a>
+        <a class="list-group-item list-group-item-action" href="№" role="tab">Промышленная безопасность</a>
+        <a class="list-group-item list-group-item-action" href="№" role="tab">Охрана окружающей среды</a>
+        {% comment %} <a class="list-group-item list-group-item-action" href="{% url "counterparty-list" %}" role="tab">Список контрагентов</a> {% endcomment %}
     </div>
 {% endblock %}
 
@@ -23,19 +26,15 @@
 
             <div class="row">
                 <div class="col">
-
                     <form action="" method="post">
                         {% csrf_token %}
-
-                        {{ form_sro.as_p }}
-
+                        {{ form.as_p }}
                         <div class="form-group-row">
                             <div class="col-6">
                                 <input type="submit" class="btn btn-primary btn-block" value="Сохранить">
                             </div>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
