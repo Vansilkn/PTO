@@ -20,7 +20,7 @@ def counterparty_page (request):
         'pagename':'Список контрагентов',
         'counterparties': counterparties
     }
-    return render(request, 'view_counterparties.html', context)
+    return render(request, 'index_counterparties.html', context)
 
 
 
@@ -128,7 +128,7 @@ def sro_page (request):
         'pagename':'Просмотр списка СРО',
         'sros': sros
     }
-    return render(request, 'view_counterparties.html', context)
+    return render(request, 'index_counterparties.html', context)
 
 
 

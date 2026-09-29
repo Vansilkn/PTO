@@ -14,6 +14,7 @@ class ProjectModel(models.Model):
     zakazchik_name = models.CharField(max_length=100)
     zastroschik_name = models.CharField(max_length=100)
     genpodryadchyk_name = models.CharField(max_length=100)
+    project_status = models.CharField(max_length=100, default='В работе')       # Статус проекта: закрыт, в работе
     creation_date = models.DateTimeField(auto_now=True, verbose_name="Дата создания")
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, blank=True, null=True)
     public = models.BooleanField(default=True) # True = public, False = private

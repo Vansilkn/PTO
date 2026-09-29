@@ -15,6 +15,9 @@
   ``` python -m pip freeze > requirements.txt ```
 
 
+
+
+
 ## 4. Применить миграции
 ``` python manage.py migrate ```
 ### 4.1. Если нам нужно сбросить миграцию до какой-то определенной, например с миграции 0005 до миграции 0003, то выполним следующую команду:
@@ -44,19 +47,166 @@
 
 # *********** Работа с БД ****************************************************************
 ## Выгрузка и загрузка данных при работе с БД
+# Всё приложение
+``` python manage.py dumpdata MainApp --indent 4 --output MainApp/fixtures/MainApp.json ```
+# Конкретная модель
+``` python manage.py dumpdata MainApp.Product --indent 4 --output MainApp/fixtures/products.json ```
+# Несколько моделей через пробел
+``` python manage.py dumpdata MainApp.Product MainApp.Order --indent 4 --output MainApp/fixtures/products_orders.json ```
+## Флаг --output надёжнее, чем перенаправление > — корректно обрабатывает кодировку UTF-8.
+
+## Исключение лишних данных
+## Часто не нужны сессии, логи, права доступа или контент-тайпы:
+
+
+
+
+# Выгрузка всех моделей из EXPORT_MODELS
+``` python manage.py export_json ```
+
+# Свои модели и каталог
+``` python manage.py export_json -m MainApp.Product MainApp.Order -o /tmp/json_export ```
+
+# Справка
+``` python manage.py help export_json ```
+
+
+
+
+<!--
+
+Полезные флаги dumpdata
+Флаг	Что делает
+--indent 4	Человекочитаемый отступ
+-e sessions	Исключить модель (--exclude)
+--natural-foreign	Использовать natural_key вместо ID для связей
+--natural-primary	Не включать первичный ключ
+MainApp.Product	Выгрузить конкретную модель, а не всё приложение
+--format yaml	Не только JSON, но и XML/YAML
+
+
+
+
+
+
+
+
+
+
+
+python manage.py dumpdata MainApp \
+  --exclude contenttypes \
+  --exclude auth.permission \
+  --exclude sessions \
+  --indent 4 \
+  --output MainApp/fixtures/MainApp.json 
+  
+Естественные ключи (natural keys)
+Если между моделями есть связи и вы хотите, чтобы фикстуры были переносимы между базами (где ID могут отличаться):
+
+bash
+python manage.py dumpdata MainApp --natural-foreign --natural-primary --indent 4 --output MainApp/fixtures/MainApp.json
+Для этого в моделях нужно определить методы natural_key() и get_by_natural_key():
+
+python
+class Product(models.Model):
+    name = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(unique=True)
+
+    def natural_key(self):
+        return (self.slug,)
+
+    class Meta:
+        unique_together = [['slug']]
+
+
+Загрузка обратно
+bash
+python manage.py loaddata MainApp/fixtures/MainApp.json 
+
+Загрузка обратно
+bash
+python manage.py loaddata MainApp/fixtures/MainApp.json
+Перед загрузкой полезно выполнить миграции:
+
+bash
+python manage.py migrate
+python manage.py loaddata MainApp/fixtures/MainApp.json
+Автоматизация: management command для бэкапа
+Если вы хотите запускать выгрузку одним действием с заданным набором приложений и исключений:
+
+
+# MainApp/management/commands/dump_fixtures.py
+
+from django.core.management import call_command
+from django.core.management.base import BaseCommand
+from pathlib import Path
+
+FIXTURES_DIR = Path('MainApp/fixtures')
+APPS = ['MainApp']
+EXCLUDE = ['contenttypes', 'auth.permission', 'sessions']
+
+
+class Command(BaseCommand):
+    help = 'Выгружает фикстуры для указанных приложений'
+
+    def handle(self, *args, **options):
+        FIXTURES_DIR.mkdir(parents=True, exist_ok=True)
+
+        for app in APPS:
+            filepath = FIXTURES_DIR / f'{app}.json'
+            self.stdout.write(f'Выгрузка {app} → {filepath} ...')
+
+            call_command(
+                'dumpdata',
+                app,
+                exclude=EXCLUDE,
+                indent=4,
+                output=str(filepath),
+            )
+            self.stdout.write(self.style.SUCCESS(f'✓ {filepath}'))
+
+
+Запуск:
+
+bash
+python manage.py dump_fixtures
+Структура каталога
+text
+MainApp/
+  fixtures/
+    MainApp.json
+    products.json
+    orders.json
+Каталог fixtures/ Django ищет автоматически при loaddata, так что загружать можно просто по имени файла:
+
+bash
+python manage.py loaddata MainApp.json
+Какой объём данных выгружаете? Если таблицы большие (от десятков тысяч строк), есть нюанс — dumpdata грузит всё в память. В этом случае можно выгружать по моделям отдельно.
+
+-->
+
+
+
+
+
+
 ### Выгрузить данные из БД
-```python manage.py dumpdata MainApp --indent 4 > MainApp/fixtures/MainApp.json```
-```python manage.py dumpdata AuthApp --indent 4 > AuthApp/fixtures/auth.json```
-```python manage.py dumpdata CounterpartyApp --indent 4 > CounterpartyApp/fixtures/counterparty.json```
-```python manage.py dumpdata JurnalsApp --indent 4 > JurnalsApp/fixtures/jurnals.json```
-```python manage.py dumpdata ProjectsApp --indent 4 > ProjectsApp/fixtures/projects.json```
+``` python manage.py dumpdata MainApp --indent 4 --output MainApp/fixtures/mainapp.json ```
+``` python manage.py dumpdata AuthApp --indent 4 --output AuthApp/fixtures/auth.json ```
+``` python manage.py dumpdata CounterpartyApp --indent 4 --output CounterpartyApp/fixtures/counterparty.json ```
+``` python manage.py dumpdata JurnalsApp --indent 4 --output JurnalsApp/fixtures/jurnals.json ```
+``` python manage.py dumpdata ProjectsApp --indent 4 --output ProjectsApp/fixtures/projects.json ```
 
 ### Загрузить данные в БД
-```python manage.py loaddata MainApp/fixtures/MainApp.json```
-```python manage.py loaddata AuthApp/fixtures/auth.json```
-```python manage.py loaddata CounterpartyApp/fixtures/counterparty.json```
-```python manage.py loaddata JurnalsApp/fixtures/jurnals.json```
-```python manage.py loaddata ProjectsApp/fixtures/projects.json```
+## Перед загрузкой полезно выполнить миграции:
+``` python manage.py migrate ``
+
+``` python manage.py loaddata MainApp/fixtures/MainApp.json ``
+``` python manage.py loaddata AuthApp/fixtures/auth.json ```
+``` python manage.py loaddata CounterpartyApp/fixtures/counterparty.json ```
+``` python manage.py loaddata JurnalsApp/fixtures/jurnals.json ```
+``` python manage.py loaddata ProjectsApp/fixtures/projects.json ```
 
 ## ***************************************************************************************
 
@@ -208,4 +358,19 @@
 # 4. Path Intellisense
 # 5. Material Icon Theme
 # 6. Live Server
+
+
+
+#### Ход выполнения работ
+
+
+
+### ЖУРНАЛЫ
+## Вывести список журналов на страницу с сылками на переключения на страницу журнала
+## Общий журнал работ
+
+
+
+
+
 

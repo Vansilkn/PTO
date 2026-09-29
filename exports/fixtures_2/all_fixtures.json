@@ -1,0 +1,144 @@
+[
+{
+    "model": "CounterpartyApp.counterpartymodel",
+    "pk": 1,
+    "fields": {
+        "type_of_counterparty": "Юридическое лицо",
+        "name_sokr": "ООО \"ЭНКО НГС\"",
+        "name_poln": "ООО \"ЭНКО НГС\"",
+        "ur_adres": "127422, город Москва, ул Костякова, д. 12 стр. 2",
+        "pocht_adres": "127422, город Москва, ул Костякова, д. 12 стр. 2",
+        "inn": "9704223722",
+        "kpp": "771301001",
+        "ogrn": "1237700677830",
+        "name_bank": "ПАО Сбербанк Г. Москва",
+        "rs": "30101810400000000225",
+        "ks": "40702810738000499621",
+        "bik": "044525225",
+        "phone": "8(926)-575-05-97",
+        "email": "enkozakaz@yandex.ru",
+        "website": "www.ЭНКОГРУПП.РФ",
+        "creation_date": "2026-01-31T19:55:53.830Z",
+        "user": 1,
+        "public": true
+    }
+},
+{
+    "model": "CounterpartyApp.counterpartymodel",
+    "pk": 2,
+    "fields": {
+        "type_of_counterparty": "Юридическое лицо",
+        "name_sokr": "ООО «Строй-Инвест»",
+        "name_poln": "Общество с ограниченной ответственностью «Строй-Инвест»",
+        "ur_adres": "121354, Г.МОСКВА, ВН.ТЕР.Г. МУНИЦИПАЛЬНЫЙ ОКРУГ МОЖАЙСКИЙ, УЛ ВИТЕБСКАЯ, Д. 9, СТР. 13",
+        "pocht_adres": "121354, Г.МОСКВА, ВН.ТЕР.Г. МУНИЦИПАЛЬНЫЙ ОКРУГ МОЖАЙСКИЙ, УЛ ВИТЕБСКАЯ, Д. 9, СТР. 13",
+        "inn": "7707324355",
+        "kpp": "773101001",
+        "ogrn": "1037707020746",
+        "name_bank": "АО \"АЛЬФА-БАНК\"",
+        "rs": "40702810501300025658",
+        "ks": "30101810200000000593",
+        "bik": "044525593",
+        "phone": "+7 (999) 999-99-99",
+        "email": "44222@rambler.ru",
+        "website": "www.ттттттт.РФ",
+        "creation_date": "2026-01-31T20:05:03.491Z",
+        "user": 1,
+        "public": true
+    }
+},
+{
+    "model": "CounterpartyApp.counterpartymodel",
+    "pk": 3,
+    "fields": {
+        "type_of_counterparty": "Юридическое лицо",
+        "name_sokr": "ООО «СК «Основа»",
+        "name_poln": "Общество с ограниченной ответственностью «Строительная компания «Основа»",
+        "ur_adres": "194044, г. Санкт-Петербург, ул. Чугунная, д. 14, литера П, помещение 2-Н, офис 207",
+        "pocht_adres": "107078, г. Москва, пр. Академика Сахарова, д. 12",
+        "inn": "7804707610",
+        "kpp": "780401001",
+        "ogrn": "1247800026495",
+        "name_bank": "ВТБ (ПАО)",
+        "rs": "40702810028730002262",
+        "ks": "30101810145250000411",
+        "bik": "044525411",
+        "phone": "+7 (495) 744-32-46",
+        "email": "info@cc-osnova.ru",
+        "website": "www.cc-osnova.ru",
+        "creation_date": "2026-01-31T20:11:05.386Z",
+        "user": 1,
+        "public": true
+    }
+},
+{
+    "model": "JurnalsApp.jurnalsmodel",
+    "pk": 1,
+    "fields": {
+        "name_jurnals": "Журнал",
+        "creation_date": "2026-09-19T12:52:43.293Z",
+        "user": null,
+        "public": true
+    }
+},
+{
+    "model": "JurnalsApp.jurnalsmodel",
+    "pk": 2,
+    "fields": {
+        "name_jurnals": "Журнал",
+        "creation_date": "2026-09-19T12:52:43.293Z",
+        "user": null,
+        "public": true
+    }
+},
+{
+    "model": "JurnalsApp.jurnalsmodel",
+    "pk": 3,
+    "fields": {
+        "name_jurnals": "Журнал",
+        "creation_date": "2026-09-19T12:52:43.293Z",
+        "user": null,
+        "public": true
+    }
+},
+{
+    "model": "JurnalsApp.jurnalsmodel",
+    "pk": 4,
+    "fields": {
+        "name_jurnals": "Журнал",
+        "creation_date": "2026-09-19T12:52:43.293Z",
+        "user": null,
+        "public": true
+    }
+},
+{
+    "model": "ProjectsApp.projectmodel",
+    "pk": 1,
+    "fields": {
+        "name_project": "Монорельс",
+        "projects_adres": "121323\r\n",
+        "zakazchik_name": "Метрополитен",
+        "zastroschik_name": "Метрополитен 2",
+        "genpodryadchyk_name": "ООО \"ЕКС\"",
+        "project_status": "В работе",
+        "creation_date": "2026-09-17T22:38:33.864Z",
+        "user": 1,
+        "public": true
+    }
+},
+{
+    "model": "ProjectsApp.projectmodel",
+    "pk": 3,
+    "fields": {
+        "name_project": "Монорельс2",
+        "projects_adres": "121",
+        "zakazchik_name": "Метрополитен",
+        "zastroschik_name": "Метрополитен 3",
+        "genpodryadchyk_name": "ООО \"ЕКС\"",
+        "project_status": "В работе",
+        "creation_date": "2026-09-17T22:39:47.642Z",
+        "user": 1,
+        "public": true
+    }
+}
+]

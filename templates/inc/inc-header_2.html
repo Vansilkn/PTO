@@ -40,8 +40,11 @@
                     </div>
                 </div> {% endcomment %}
             </div>
+
             <div class="col-8 border border-1">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                {% comment %} {% block inc %}
+                {% endblock %} {% endcomment %}
+                {% comment %} <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="№navbarCollapse"
                         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -49,13 +52,13 @@
                     <ul class="navbar-nav mr-auto">
                         {% if request.user.is_authenticated %}
                             <li class="form-inline">
-                                {% comment %} <a class="btn btn-outline-secondary" href="{% url "projects-list" %}"> {% endcomment %}
+                                <a class="btn btn-outline-secondary" href="{% url "projects-list" %}">
                                 <a class="btn btn-outline-secondary" href="{% url "projects-list" %}">
                                     Проекты
                                 </a>
                             </li>
                             <li class="form-inline">
-                                {% comment %} <a class="btn btn-outline-secondary" href="{% url "my-projects" %}"> {% endcomment %}
+                                <a class="btn btn-outline-secondary" href="{% url "my-projects" %}">
                                 <a class="btn btn-outline-secondary" href="">
                                     Мои проекты
                                 </a>
@@ -72,8 +75,9 @@
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div> {% endcomment %}
             </div>
+
             <div class="col-3 border border-1">
                 <div class="row pt-2">
                     <div class="col-2 px-1 border border-1" style="width: 40px;">

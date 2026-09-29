@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Исходно-разрешительная документация{% endblock title %}
+
+<!-- Begin page sidebar -->
+{% block sidebar %}
+    <div class="list-group" id="list-tab" role="tablist">
+        {% if request.user.is_authenticated %}
+            <a class="list-group-item list-group-item-action" href="{% url "project-detail" project.id %}" role="tab">Ход строительства</a>
+            <a class="list-group-item list-group-item-action" href="{% url "project-ird" project.id %}" role="tab">Исходно-разрешительная документация</a>
+            <a class="list-group-item list-group-item-action" href="{% url "project-psd" project.id %}" role="tab">Проектная документация</a>
+            <a class="list-group-item list-group-item-action active" href="{% url "project-ppr" project.id %}" role="tab">ППР, ТТК, СГП</a>
+            <a class="list-group-item list-group-item-action" href="{% url "project-stroyka" project.id %}" role="tab">Строительное производство</a>
+            <a class="list-group-item list-group-item-action" href="{% url "project-priyomka-rabot" project.id %}" role="tab">Приемка работ, объекта</a>
+            {% comment %} <a class="list-group-item list-group-item-action" href="{% url "projects-list" %}" role="tab">Журналы</a>
+            <a class="list-group-item list-group-item-action" href="{% url "projects-list" %}" role="tab">Журналы</a>
+            <a class="list-group-item list-group-item-action" href="{% url "toytb" %}" role="tab">ОТ, ТБ и ООС</a> {% endcomment %}
+            <a class="list-group-item list-group-item-action" href="{% url "project-doc" project.id %}" role="tab">Строительный документооборот</a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+<!-- Begin page content -->
+{% block content %}
+    <!-- Begin page content -->
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+            <p>ППР, ТТК, СГП</p>
+        </div>
+        <div class="tab-pane fade" id="list-add-profile" role="tabpanel" aria-labelledby="list-add-profile-list">
+            
+        </div>
+    </div> 
+{% endblock %}

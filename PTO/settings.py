@@ -23,16 +23,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-r7cenkny12)m4+5a=wshn6to+)asc-ccjbv4p+r1$lk_xzxfgh'
+# Секретный ключ (в продакшене брать из переменных окружения!)
 SECRET_KEY = get_random_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# Режим отладки
 DEBUG = True
 
+
+# Разрешённые хосты (обязательно для продакшена)
+# ALLOWED_HOSTS = ["example.com", "www.example.com"]
 ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# Приложения проекта
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -52,6 +57,7 @@ INSTALLED_APPS = [
     'django_extensions',
 ]
 
+# Промежуточное ПО
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -62,9 +68,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Корневой URLconf
 ROOT_URLCONF = 'PTO.urls'
 
-
+# Шаблоны
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -116,6 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
+# Локаль и часовые пояса
 
 LANGUAGE_CODE = 'ru-ru'
 
@@ -131,13 +139,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+
+# Статика и медиа
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static"
+    BASE_DIR / "static",
+    BASE_DIR / "JurnalsApp" / "static" / "jr",
 ]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# MEDIA_URL = "/media/"
+# MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

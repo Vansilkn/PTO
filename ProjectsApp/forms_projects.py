@@ -8,7 +8,7 @@ class ProjectForm(ModelForm):
         model = ProjectModel
         # Описываем поля, которые будем заполнять в форме
         fields = ['name_project', 'projects_adres', 'zakazchik_name',
-                  'zastroschik_name', 'genpodryadchyk_name', ]    
+                  'zastroschik_name', 'genpodryadchyk_name', 'project_status', ]    
         # исключение поля или полей через команду
         #    exclude = ['creation_date']
 
@@ -17,6 +17,7 @@ class ProjectForm(ModelForm):
                   "zakazchik_name": "", 
                   "zastroschik_name": "",
                   "genpodryadchyk_name": "", 
+                  "project_status": "", 
                   "public": "Public(checked) / Private(unchecked)",}
         widgets = {
             "name_project": TextInput(attrs={
@@ -43,6 +44,11 @@ class ProjectForm(ModelForm):
             "genpodryadchyk_name": TextInput(attrs={
                 "class": "form-control",
                 "placeholder": "Генподрядчик:",
+                "style": "max-width: 300px"
+            }),
+            "project_status": TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Статус",
                 "style": "max-width: 300px"
             }),
             "public": CheckboxInput(attrs={"value": "True"

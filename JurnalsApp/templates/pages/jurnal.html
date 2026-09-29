@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Журнал{% endblock title %}
+
+<!-- Begin page sidebar -->
+{% block sidebar %}
+    <div class="list-group" id="list-tab" role="tablist">
+        {% if request.user.is_authenticated %}
+            {% comment %} <a class="list-group-item list-group-item-action active" href="{% url "project-detail" project.id %}" role="tab">Ход строительства</a>
+            <a class="list-group-item list-group-item-action" href="{% url "project-ird" project.id %}" role="tab">Исходно-разрешительная документация</a>
+            <a class="list-group-item list-group-item-action" href="{% url "project-psd" project.id %}" role="tab">Проектная документация</a>
+            <a class="list-group-item list-group-item-action" href="{% url "project-ppr" project.id %}" role="tab">ППР, ТТК, СГП</a>
+            <a class="list-group-item list-group-item-action" href="{% url "project-stroyka" project.id %}" role="tab">Строительное производство</a>
+            <a class="list-group-item list-group-item-action" href="{% url "project-priyomka-rabot" project.id %}" role="tab">Приемка работ, объекта</a> {% endcomment %}
+            {% comment %} <a class="list-group-item list-group-item-action" href="{% url "projects-list" %}" role="tab">Журналы</a>
+            <a class="list-group-item list-group-item-action" href="{% url "projects-list" %}" role="tab">Журналы</a>
+            <a class="list-group-item list-group-item-action" href="{% url "toytb" %}" role="tab">ОТ, ТБ и ООС</a> {% endcomment %}
+            {% comment %} <a class="list-group-item list-group-item-action" href="{% url "project-doc" project.id %}" role="tab">Строительный документооборот</a> {% endcomment %}
+        {% endif %}
+    </div>
+{% endblock %}
+{% comment %} {% block sidebar %}
+    <div class="list-group" id="list-tab" role="tablist">
+        <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="{% url "projects-list" %}" role="tab" aria-controls="list-home">Список проектов</a>
+        <a class="list-group-item list-group-item-action" id="list-add-projects-list" data-bs-toggle="list" href="#list-add-projects" role="tab" aria-controls="list-add-projects">Добавить проект</a>
+    </div>
+{% endblock %} {% endcomment %}
+
+<!-- Begin page content -->
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1>{{ pagename }}</h1>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="padding: 0px 20px 10px 0px;">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    {% if request.user.is_authenticated %}
+                        <a class="btn btn-primary btn-sm" href="{% url "jurnal-edit" jurnal.id %}">Редактировать журнал</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="padding: 0px 20px 10px 0px;">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    {% if request.user.is_authenticated %}
+                        <a class="btn btn-primary btn-sm" href="{% url "jurnal-ojr-edit" %}">OJR</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% comment %} <div class="row">
+            <div class="col" style="padding: 0px 20px 10px 0px;">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    {% if request.user.is_authenticated %}
+                        <a class="btn btn-primary btn-sm" href="#{% url "project-delete" project.id %}">Удалить журнал</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div> {% endcomment %}
+        <div class="row">
+            <div class="col">
+                <fieldset disabled>
+                    <div class="row disabled">
+                        <div class="col col-8">
+                            Наименование журнала: <input type="text" value="{{jurnal.name_jurnals}}" class="form-control">
+                            {% comment %} Адрес объекта: <input type="text" value="{{project.projects_adres}}" class="form-control">
+                            Заказчик: <input type="text" value="{{project.zakazchik_name}}" class="form-control">
+                            Застройщик: <input type="text" value="{{project.zastroschik_name}}" class="form-control">
+                            Генподрядчик: <input type="text" value="{{project.genpodryadchyk_name}}" class="form-control">
+                            Статус: <input type="text" value="{{project.project_status}}" class="form-control"> {% endcomment %}
+                        </div>
+                    </div>
+                </fieldset>
+                <hr>
+            </div>
+        </div>
+    </div>
+    {% comment %} <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+            
+        </div>
+        <div class="tab-pane fade" id="list-add-profile" role="tabpanel" aria-labelledby="list-add-profile-list">
+            
+        </div>
+    </div>  {% endcomment %}
+{% endblock %}

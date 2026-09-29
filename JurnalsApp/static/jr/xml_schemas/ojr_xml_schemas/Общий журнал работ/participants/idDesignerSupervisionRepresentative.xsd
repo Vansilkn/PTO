@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema 
+  version="4.0"
+  targetNamespace="http://v_16_2/participants/idDesignerSupervisionRepresentative.xsd"
+  elementFormDefault="qualified"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:cf="http://v_16_2/participants/idDesignerSupervisionRepresentative.xsd"
+  xmlns:ct="http://v_16_2/types/CommonTypes.xsd"
+  xmlns:bt="http://v_16_2/types/BaseTypes.xsd"
+  xmlns:bd="http://v_16_2/types/BaseDocument.xsd"
+>
+  <xs:import schemaLocation="../types/CommonTypes.xsd" namespace="http://v_16_2/types/CommonTypes.xsd" />
+  <xs:import schemaLocation="../types/BaseTypes.xsd" namespace="http://v_16_2/types/BaseTypes.xsd" />
+  <xs:import schemaLocation="../types/BaseDocument.xsd" namespace="http://v_16_2/types/BaseDocument.xsd" />
+
+  <xs:complexType name="idDesignerSupervisionRepresentative">
+    <xs:annotation>
+      <xs:documentation>
+        Данные Лица, осуществляющего Авторский надзор (информация о представителях)
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bd:baseDocument">
+        <xs:sequence>
+          <xs:element name="designerSupervisionRepresentativesList">
+            <xs:annotation>
+              <xs:documentation>
+                Представители лиц, осуществляющих авторский надзор
+              </xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="designerSupervisionRepresentativesListItem" maxOccurs="unbounded">
+                  <xs:annotation>
+                    <xs:documentation>
+                      Представители лица, осуществляющего авторский надзор
+                    </xs:documentation>
+                  </xs:annotation>
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="designerSupervisionAuthRepresentativesList">
+                        <xs:annotation>
+                          <xs:documentation>
+                            Уполномоченные представители лица, осуществляющего подготовку проектной документации, выполняющего проверку соответствия выполняемых работ проектной документации (авторский надзор)
+                          </xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element
+                              name="designerSupervisionAuthRepresentativesListItem"
+                              type="ct:representativeWithIdAndIDNRAndAdministrativeDocumentAndSignature"
+                              maxOccurs="unbounded"
+                            >
+                              <xs:annotation>
+                                <xs:documentation>
+                                  Уполномоченный представитель лица, осуществляющего подготовку проектной документации, выполняющего проверку соответствия выполняемых работ проектной документации (авторский надзор)
+                                </xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="participantId" type="bt:GUID">
+                        <xs:annotation>
+                          <xs:documentation>
+                            ID участника (организации), осуществляющего подготовку проектной документации, выполняющего проверку соответствия выполняемых работ проектной документации (авторский надзор)
+                          </xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element name="projectDocSectionsList" type="ct:projectDocSectionsList" minOccurs="0">
+                        <xs:annotation>
+                          <xs:documentation>Список разделов проектной документации (сокр.)</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="extraParametersList" type="ct:extraParametersList" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Список дополнительных параметров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="idDesignerSupervisionRepresentative" type="cf:idDesignerSupervisionRepresentative" />
+</xs:schema>

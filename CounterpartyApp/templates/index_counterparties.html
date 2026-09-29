@@ -2,17 +2,31 @@
 {% load static %}
 {% block title %}Контрагенты{% endblock title %}
 
-<!-- Begin page sidebar -->
+<!-- Begin sidebar -->
 {% block sidebar %}
-    {% comment %} <div class="list-group" id="list-tab" role="tablist"> {% endcomment %}
-    <div class="list-group">
+    <div class="list-group" id="list-tab" role="tablist">
         {% if request.user.is_authenticated %}
-        <a class="list-group-item list-group-item-action active" href="{% url "counterparty-list" %}" role="tab">Список контрагентов</a>
+            <a class="list-group-item list-group-item-action" href="{% url "home" %}" role="tab">Главная</a>
+            <a class="list-group-item list-group-item-action" href="{% url "projects-list" %}" role="tab">Проекты</a>
+            <a class="list-group-item list-group-item-action active" href="{% url "counterparty-list" %}" role="tab">Контрагенты</a>
+            <a class="list-group-item list-group-item-action" href="#{% url "projects-list" %}" role="tab">НТД</a>
+            <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages">Сообщения</a>
+            <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">Настройки</a>
         {% endif %}
     </div>
 {% endblock %}
 
-<!-- Begin page content -->
+<!-- Begin nav_bar -->
+{% block nav_bar %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url "home" %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Контрагенты</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+<!-- Begin content -->
 {% block content %}
     <div class="container" style="margin-top: 48px;">
         <div class="row">
@@ -55,6 +69,7 @@
                             <th scope="col">e-mail</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         {% for counterparty in counterparties %}
                             <tr>

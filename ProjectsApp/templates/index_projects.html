@@ -2,23 +2,32 @@
 {% load static %}
 {% block title %}Проекты{% endblock title %}
 
-<!-- Begin page sidebar -->
+<!-- Begin sidebar -->
 {% block sidebar %}
-    {% comment %} <div class="list-group" id="list-tab" role="tablist">  {% endcomment %}
-    <div class="list-group" role="tablist"> 
-        {% comment %} <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="{% url "projects-list" %}" role="tab" aria-controls="list-home">Список проектов</a>
-        <a class="list-group-item list-group-item-action" id="list-add-projects-list" data-bs-toggle="list" href="#list-add-projects" role="tab" aria-controls="list-add-projects">Добавить проект</a> {% endcomment %}
+    <div class="list-group" id="list-tab" role="tablist">
         {% if request.user.is_authenticated %}
-        <a class="list-group-item list-group-item-action active" href="{% url "projects-list" %}" role="tab">Список проектов</a>
-        {% endif %}
-        {% if request.user.is_authenticated %}
-        <a class="list-group-item list-group-item-action" href="{% url "add-project" %}" role="tab">Добавить проект</a>
+            <a class="list-group-item list-group-item-action" href="{% url "home" %}" role="tab">Главная</a>
+            <a class="list-group-item list-group-item-action active" href="{% url "projects-list" %}" role="tab">Проекты</a>
+            <a class="list-group-item list-group-item-action" href="{% url "counterparty-list" %}" role="tab">Контрагенты</a>
+            <a class="list-group-item list-group-item-action" href="#{% url "projects-list" %}" role="tab">НТД</a>
+            <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages">Сообщения</a>
+            <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">Настройки</a>
         {% endif %}
     </div>
 {% endblock %}
 
+<!-- Begin nav_bar -->
+{% block nav_bar %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url "home" %}">Home</a></li>
+            {% comment %} <li class="breadcrumb-item"><a href="{% url "projects-list" %}">Проекты</a></li> {% endcomment %}
+            <li class="breadcrumb-item active" aria-current="page">Проекты</li>
+        </ol>
+    </nav>
+{% endblock %}
 
-<!-- Begin page content -->
+<!-- Begin content -->
 {% block content %}
     <div class="container ">
         <div class="row">
@@ -27,15 +36,22 @@
                 <hr>
             </div>
         </div>
-        {% comment %} <div class="row">
-            <div class="col">
+        <div class="row">
+            <div class="col" style="padding: 0px 20px 10px 0px;">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     {% if request.user.is_authenticated %}
-                        <a class="btn btn-primary btn-sm" href="{% url "add-project" %}">Добавить проект</a>
+                        <a class="btn btn-primary btn-sm" href="{% url "project-add" %}">Добавить проект</a>
                     {% endif %}
                 </div>
             </div>
-        </div> {% endcomment %}
+            <div class="col" style="padding: 0px 20px 10px 0px;">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    {% if request.user.is_authenticated %}
+                        <a class="btn btn-primary btn-sm" href="{% url "project-save" %}">Сохранить отчет</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col">
                 <table class="table table-striped">
@@ -47,6 +63,7 @@
                             <th scope="col">Заказчик</th>
                             <th scope="col">Застройщик</th>
                             <th scope="col">Генподрядчик</th>
+                            <th scope="col">Статус</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,6 +85,7 @@
                                 <td>{{project.zakazchik_name}}</td>
                                 <td>{{project.zastroschik_name}}</td>
                                 <td>{{project.genpodryadchyk_name}}</td>
+                                <td>{{project.project_status}}</td>
                             </tr>
                         {% empty %}
                             <tr>
@@ -77,7 +95,7 @@
                     </tbody> 
                 </table> 
                 <div align = "right">
-                    <i style="color: gray;">Всего проектов: {{ projects.count }} </i>
+                    <i style="color: gray;">Всего проектов: {{ projects.count }}</i>
                 </div>
             </div>
         </div>

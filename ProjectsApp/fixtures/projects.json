@@ -1,0 +1,32 @@
+[
+{
+    "model": "ProjectsApp.projectmodel",
+    "pk": 1,
+    "fields": {
+        "name_project": "Монорельс",
+        "projects_adres": "121323\r\n",
+        "zakazchik_name": "Метрополитен",
+        "zastroschik_name": "Метрополитен 2",
+        "genpodryadchyk_name": "ООО \"ЕКС\"",
+        "project_status": "В работе",
+        "creation_date": "2026-09-17T22:38:33.864Z",
+        "user": 1,
+        "public": true
+    }
+},
+{
+    "model": "ProjectsApp.projectmodel",
+    "pk": 3,
+    "fields": {
+        "name_project": "Монорельс2",
+        "projects_adres": "121",
+        "zakazchik_name": "Метрополитен",
+        "zastroschik_name": "Метрополитен 3",
+        "genpodryadchyk_name": "ООО \"ЕКС\"",
+        "project_status": "В работе",
+        "creation_date": "2026-09-17T22:39:47.642Z",
+        "user": 1,
+        "public": true
+    }
+}
+]

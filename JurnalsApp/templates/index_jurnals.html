@@ -1,0 +1,324 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Журналы{% endblock title %}
+
+<!-- Begin page sidebar -->
+{% block sidebar %}
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+        {% if request.user.is_authenticated %}
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                    Ход строительства
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                    Исходно-разрешительная документация
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                    Проектная документация
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+            <div class="accordion-body">
+
+            </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                    ППР, ТТК, СГП
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+                <div class="accordion-body">
+
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+                    Строительное производство
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <a class="list-group-item list-group-item-action" href="#" role="tab">Акты</a>
+                    <a class="list-group-item list-group-item-action" href="{% url "jurnals-list" %}" role="tab">Журналы</a>
+                    <a class="list-group-item list-group-item-action" href="#" role="tab">КС-2</a>
+                    <a class="list-group-item list-group-item-action" href="#" role="tab">Паспорта, сертификаты</a>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false" aria-controls="panelsStayOpen-collapseSix">
+                    Приемка работ, объекта
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven">
+                    Строительный документооборот
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+<!-- Begin nav_bar -->
+{% block nav_bar %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url "home" %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url "projects-list" %}">Проекты</a></li>
+            <li class="breadcrumb-item"><a href="#">{{project.name_project}}</a></li>
+
+            {% comment %} <li class="breadcrumb-item"><a href="{% url "project-detail" project.id %}">{{project.name_project}}</a></li> {% endcomment %}
+
+            {% comment %} <li class="breadcrumb-item active" aria-current="page">{{project.name_project}}</li>
+            <li class="breadcrumb-item"><a href="{% url "project-stroyka" %}">Строительное производство</a></li>
+            <li class="breadcrumb-item"><a href="{% url "projects-list" %}">Проекты</a></li> {% endcomment %}
+
+            <li class="breadcrumb-item active" aria-current="page">Журналы</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+<!-- Begin page content -->
+{% block content %}
+    <div class="container ">
+        <div class="row">
+            <div class="col text-center">
+                <h1>{{ pagename }}</h1>
+                {% comment %} <h1>{{ project.id }}</h1>
+                <h1>{{ project.name_project }}</h1>
+                <h1>{{ project.project_status }}</h1> {% endcomment %}
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="padding: 0px 20px 10px 0px;">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    {% if request.user.is_authenticated %}
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Добавить журнал</button>
+                    {% comment %} <a class="btn btn-primary btn-sm" href="{% url "jurnals-add" %}">Добавить журнал</a> {% endcomment %}
+                    {% comment %} <a class="btn btn-primary btn-sm" href="{% url "create-article" %}">Добавить журнал</a> {% endcomment %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Список журналов</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <!-- Все поля кроме categories и public1 через as_p -->
+                                    {% for field in form %}
+                                        {% if field.name != 'categories' and field.name != 'public1' %}
+                                            <p>
+                                                <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                                {{ field }}
+                                                {% if field.errors %}
+                                                    <div class="text-danger">{{ field.errors }}</div>
+                                                {% endif %}
+                                            </p>
+                                        {% endif %}
+                                    {% endfor %}
+
+
+
+                                    <!-- Категории -->
+                                    <div class="mb-3">
+                                        <label class="form-label">{{ form.categories.label }}</label>
+                                        {{ form.categories }}
+                                        {% if form.categories.errors %}
+                                            <div class="text-danger">{{ form.categories.errors }}</div>
+                                        {% endif %}
+                                    </div>
+
+                                    <!-- Одиночный чекбокс -->
+                                    <div class="mb-3 form-check">
+                                        {{ form.public1 }}
+                                        <label class="form-check-label" for="{{ form.public1.id_for_label }}">
+                                            {{ form.public1.label }}
+                                        </label>
+                                    </div>
+
+
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% comment %} <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                        <button type="button" class="btn btn-primary">Сохранить</button>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Наименование журнала</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for jurnal in jurnals %}
+                            <tr>
+                                <td scope="row">{{ jurnal.id }} </td>
+                                <td>
+                                    <a href="{% url "jurnal-detail" jurnal.id %}">{{jurnal.name_jurnals}}</a>
+                                    {% if jurnal.user == request.user %}
+                                        <a href="{% url "jurnal-edit" jurnal.id %}">
+                                            <i style="color: blue;" class="bi bi-pencil-square"></i>
+                                        </a>
+                                        {% comment %} <a href="{% url "jurnal-delete" jurnal.id %}">
+                                            <i style="color: red;" class="bi bi-trash"></i>
+                                        </a> {% endcomment %}
+                                    {% endif %}
+                                </td>
+                                {% comment %} <td>{{project.projects_adres}}</td>
+                                <td>{{project.zakazchik_name}}</td>
+                                <td>{{project.zastroschik_name}}</td>
+                                <td>{{project.genpodryadchyk_name}}</td>
+                                <td>{{project.project_status}}</td> {% endcomment %}
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="4"> Нет доступных проектов! </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody> 
+                </table> 
+                <div align = "right">
+                    <i style="color: gray;">Всего журналов: {{ jurnal.count }} </i>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        {% comment %} <div class="row">
+            <div class="col">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">№ п/п</th>
+                            <th scope="col">Наименование журнала</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-1" scope="row">1</td>
+                            <td>
+                                <a href="#">Общий журнал работ</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-1" scope="row">1</td>
+                            <td>
+                                <a href="#">Общий журнал работ</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-1" scope="row">1</td>
+                            <td>
+                                <a href="#">Общий журнал работ</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-1" scope="row">1</td>
+                            <td>
+                                <a href="#">Общий журнал работ</a>
+                            </td>
+                        </tr>
+                    </tbody> 
+
+                    <tbody>
+                        <tr>
+                            <td scope="row">{{ datas['ojr'] }} </td>
+                            <td>
+                                <a href="{% url "jurnal-detail" jurnal.id %}">{{jurnal.name_jurnals}}</a>
+                                {% if jurnal.user == request.user %}
+                                    <a href="{% url "jurnal-edit" jurnal.id %}">
+                                        <i style="color: blue;" class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a href="{% url "jurnal-delete" jurnal.id %}">
+                                        <i style="color: red;" class="bi bi-trash"></i>
+                                    </a>
+                                {% endif %}
+                            </td>
+                            <td>{{project.projects_adres}}</td>
+                            <td>{{project.zakazchik_name}}</td>
+                            <td>{{project.zastroschik_name}}</td>
+                            <td>{{project.genpodryadchyk_name}}</td>
+                            <td>{{project.project_status}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"> Нет доступных проектов! </td>
+                        </tr>
+                    </tbody>
+                </table> 
+                <div align = "right">
+                    <i style="color: gray;">Всего журналов: {{ jurnal.count }} </i>
+                </div>
+            </div>
+        </div> {% endcomment %}
+        {% comment %} <script>
+            fetch("{% static 'data/countries.json' %}")
+                .then(res => res.json())
+                .then(data => console.log(data));
+        </script> {% endcomment %}
+    </div>
+{% endblock %}
+
